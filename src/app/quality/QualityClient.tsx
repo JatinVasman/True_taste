@@ -236,16 +236,41 @@ export default function QualityClient() {
 
             <AnimatedSection direction="right" delay={0.15}>
               <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-3xl overflow-hidden" style={{ aspectRatio: '3/4' }}>
-                  <Image src="/images/red-chilli.jpg" alt="Red Chilli Powder in a wooden bowl" width={350} height={470} className="w-full h-full object-cover" />
+                <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-sm">
+                  <Image
+                    src="/images/red-chilli.jpg"
+                    alt="Red Chilli Powder in a wooden bowl"
+                    width={350}
+                    height={438}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
-                <div className="flex flex-col gap-4">
-                  <div className="rounded-3xl overflow-hidden flex-1">
-                    <Image src="/images/turmeric.jpg" alt="Turmeric Powder in a wooden bowl" width={350} height={220} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="rounded-3xl overflow-hidden flex-1">
-                    <Image src="/images/garam-masala.jpg" alt="Garam Masala Powder with whole spices" width={350} height={220} className="w-full h-full object-cover" />
-                  </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-sm">
+                  <Image
+                    src="/images/turmeric.jpg"
+                    alt="Turmeric Powder in a wooden bowl"
+                    width={350}
+                    height={438}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-sm">
+                  <Image
+                    src="/images/dhaniya.jpg"
+                    alt="Dhaniya Powder with fresh coriander"
+                    width={350}
+                    height={438}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-sm">
+                  <Image
+                    src="/images/garam-masala.jpg"
+                    alt="Garam Masala Powder with whole spices"
+                    width={350}
+                    height={438}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               </div>
             </AnimatedSection>
