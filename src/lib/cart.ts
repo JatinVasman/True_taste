@@ -26,7 +26,8 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import { create, type StoreApi } from 'zustand';
+import type { StoreApi } from 'zustand';
+import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand/react';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -71,7 +72,7 @@ export function userCartKey(userId: string): string {
 // ── Store factory ──────────────────────────────────────────────────────────
 
 export function buildCartStore(storageKey: string): StoreApi<CartState> {
-  return create<CartState>()(
+  return createStore<CartState>()(
     persist(
       (set, get) => ({
         items: [],

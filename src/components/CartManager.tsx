@@ -85,7 +85,7 @@ export function CartProvider({ children }: Props) {
         }
 
         // 4. Swap the context value — all useCartStore() consumers re-render.
-        setActiveStore(nextStore);
+        setActiveStore(() => nextStore);
       } else {
         // ── LOGOUT ──────────────────────────────────────────────────────
         //
@@ -94,7 +94,7 @@ export function CartProvider({ children }: Props) {
         const guestStore = buildCartStore(GUEST_CART_KEY);
         // Clear any stale guest-slot data from before this logout.
         try { localStorage.removeItem(GUEST_CART_KEY); } catch { /* ignore */ }
-        setActiveStore(guestStore);
+        setActiveStore(() => guestStore);
       }
 
       activeUserIdRef.current = nextUserId;
