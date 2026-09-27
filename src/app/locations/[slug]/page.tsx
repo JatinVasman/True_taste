@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(slug);
   if (!city) return {};
 
-  const pageUrl = `https://www.truetaste.in/locations/${city.slug}`;
+  const pageUrl = `https://truetaste.in/locations/${city.slug}`;
 
   return {
     title: city.seoTitle,
@@ -84,19 +84,19 @@ export default async function LocationCityPage({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.truetaste.in',
+        item: 'https://truetaste.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Locations',
-        item: 'https://www.truetaste.in/locations',
+        item: 'https://truetaste.in/locations',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: city.name,
-        item: `https://www.truetaste.in/locations/${city.slug}`,
+        item: `https://truetaste.in/locations/${city.slug}`,
       },
     ],
   };
@@ -105,8 +105,8 @@ export default async function LocationCityPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'True Taste',
-    url: 'https://www.truetaste.in',
-    logo: 'https://www.truetaste.in/images/hero-spice.jpg',
+    url: 'https://truetaste.in',
+    logo: 'https://truetaste.in/images/hero-spice.jpg',
     description:
       'True Taste brings you the finest quality Indian spices, carefully selected and hygienically processed to deliver pure spices and true flavors.',
     contactPoint: {
@@ -150,7 +150,7 @@ export default async function LocationCityPage({ params }: Props) {
         '@type': 'Product',
         name: product.name,
         description: product.description,
-        image: `https://www.truetaste.in${product.heroImage}`,
+        image: `https://truetaste.in${product.heroImage}`,
         brand: {
           '@type': 'Brand',
           name: 'True Taste',
@@ -259,7 +259,7 @@ export default async function LocationCityPage({ params }: Props) {
           </div>
 
           <h2 className="font-playfair font-bold text-[#2E5E2E] text-2xl sm:text-3xl mb-4">
-            The Spice Traditions of {city.name} & {city.state}
+            The Spice Traditions of {city.name} &amp; {city.state}
           </h2>
 
           <p className="font-lato text-[#7a6b4e] text-sm sm:text-base leading-relaxed mb-6">
@@ -273,7 +273,7 @@ export default async function LocationCityPage({ params }: Props) {
             <div className="p-4 rounded-2xl bg-[#FFF8EF]/60 border border-stone-100">
               <h3 className="font-playfair font-bold text-[#2E5E2E] text-sm mb-1.5 flex items-center gap-2">
                 <Flame className="w-4 h-4 text-[#C0392B]" />
-                Authentic Heat & Vibrant Hue
+                Authentic Heat &amp; Vibrant Hue
               </h3>
               <p className="font-lato text-xs text-[#7a6b4e] leading-relaxed">
                 Our stone-ground red chilli powder imparts a deep natural crimson red without dangerous synthetic food

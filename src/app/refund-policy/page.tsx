@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import RefundPolicyClient from './RefundPolicyClient';
 
 export const metadata: Metadata = {
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     title: 'Refund & Cancellation Policy | True Taste',
     description:
       'Clear, transparent policy regarding cancellations, returns, and refunds for True Taste pure spices.',
-    url: 'https://www.truetaste.in/refund-policy',
+    url: 'https://truetaste.in/refund-policy',
     type: 'website',
     siteName: 'True Taste',
   },
   alternates: {
-    canonical: 'https://www.truetaste.in/refund-policy',
+    canonical: 'https://truetaste.in/refund-policy',
   },
 };
 
@@ -27,13 +27,13 @@ export default function RefundPolicyPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.truetaste.in',
+        item: 'https://truetaste.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Refund & Cancellation Policy',
-        item: 'https://www.truetaste.in/refund-policy',
+        item: 'https://truetaste.in/refund-policy',
       },
     ],
   };

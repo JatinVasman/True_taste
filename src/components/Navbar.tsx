@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,15 +24,13 @@ export default function Navbar() {
 
   const { isAuthenticated, signOut, isLoading } = useAuth();
   const totalCount = useCartStore((s) => s.totalCount());
-  // Hydration guard: don't show cart count until client-side
-  const [mounted, setMounted] = useState(false);
-
-  if (prevPathname !== pathname) {
-    setPrevPathname(pathname);
-    setMenuOpen(false);
-  }
-
-  useEffect(() => { setMounted(true); }, []);
+  // Hydration guard via useSyncExternalStore — the canonical React pattern
+  // for values that differ between SSR and client (avoids setState-in-effect).
+  const isMounted = useSyncExternalStore(
+    () => () => {},        // subscribe: no-op (value never changes after mount)
+    () => true,            // getSnapshot: always true on client
+    () => false,           // getServerSnapshot: false during SSR
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -45,7 +43,12 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const cartCount = mounted ? totalCount : 0;
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMenuOpen(false);
+  }
+
+  const cartCount = isMounted ? totalCount : 0;
 
   return (
     <>

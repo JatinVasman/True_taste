@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import PrivacyPolicyClient from './PrivacyPolicyClient';
 
 export const metadata: Metadata = {
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | True Taste',
     description:
       'Learn how True Taste collects, uses, and protects your personal and transaction information when browsing our pure spice collection.',
-    url: 'https://www.truetaste.in/privacy-policy',
+    url: 'https://truetaste.in/privacy-policy',
     type: 'website',
     siteName: 'True Taste',
   },
   alternates: {
-    canonical: 'https://www.truetaste.in/privacy-policy',
+    canonical: 'https://truetaste.in/privacy-policy',
   },
 };
 
@@ -27,13 +27,13 @@ export default function PrivacyPolicyPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.truetaste.in',
+        item: 'https://truetaste.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Privacy Policy',
-        item: 'https://www.truetaste.in/privacy-policy',
+        item: 'https://truetaste.in/privacy-policy',
       },
     ],
   };

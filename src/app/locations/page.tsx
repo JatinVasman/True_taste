@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { cities, getAllStates } from '@/lib/cities';
 import LocationsClient from './LocationsClient';
 
@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'Explore True Taste’s Indian locations directory covering 1,000+ Indian cities across Tier 1, Tier 2, and Tier 3. Discover premium, unadulterated spices for traditional and modern kitchens across India.',
   alternates: {
-    canonical: 'https://www.truetaste.in/locations',
+    canonical: 'https://truetaste.in/locations',
   },
   openGraph: {
     title: 'Indian Locations Directory | True Taste Spices',
     description:
       'Explore pure Indian spices across 1,000+ Indian cities. Stone-ground Red Chilli, Turmeric, Dhaniya, Jeera, and artisanal Garam Masala.',
-    url: 'https://www.truetaste.in/locations',
+    url: 'https://truetaste.in/locations',
     type: 'website',
   },
 };
@@ -29,13 +29,13 @@ export default function LocationsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.truetaste.in',
+        item: 'https://truetaste.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Indian Locations',
-        item: 'https://www.truetaste.in/locations',
+        item: 'https://truetaste.in/locations',
       },
     ],
   };
@@ -45,11 +45,11 @@ export default function LocationsPage() {
     '@type': 'CollectionPage',
     name: 'True Taste Indian Locations Directory',
     description: 'Master directory of over 1,000 Indian cities and towns where True Taste spices are discovered.',
-    url: 'https://www.truetaste.in/locations',
+    url: 'https://truetaste.in/locations',
     publisher: {
       '@type': 'Organization',
       name: 'True Taste',
-      url: 'https://www.truetaste.in',
+      url: 'https://truetaste.in',
     },
   };
 

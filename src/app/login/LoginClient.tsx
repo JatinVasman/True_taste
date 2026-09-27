@@ -18,14 +18,18 @@ export default function LoginClient() {
   const searchParams = useSearchParams();
   const { isAuthenticated, isLoading } = useAuth();
 
+  const redirectTo = searchParams.get('redirect') ?? '/account';
+  // Initialize error from callback redirect param (e.g. expired confirmation link)
+  const urlError = searchParams.get('error') ?? '';
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(() =>
+    urlError ? decodeURIComponent(urlError) : ''
+  );
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-
-  const redirectTo = searchParams.get('redirect') ?? '/account';
 
   // Redirect already-authenticated users
   useEffect(() => {
@@ -33,6 +37,7 @@ export default function LoginClient() {
       router.replace(redirectTo);
     }
   }, [isAuthenticated, isLoading, router, redirectTo]);
+
 
   function validate() {
     const errs: Record<string, string> = {};

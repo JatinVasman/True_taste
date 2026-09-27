@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -234,7 +234,7 @@ export default function RefundPolicyClient() {
                 <p>
                   This Refund, Return, and Cancellation Policy applies to all orders placed on{' '}
                   <Link href="/" className="text-[#2E5E2E] font-medium underline underline-offset-2">
-                    https://www.truetaste.in
+                    https://truetaste.in
                   </Link>{' '}
                   for packaged pure Indian spices manufactured and distributed by <strong>True Taste</strong> (Delhi Wally), New Delhi, India.
                 </p>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import TermsClient from './TermsClient';
 
 export const metadata: Metadata = {
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     title: 'Terms & Conditions | True Taste',
     description:
       'Official terms and conditions for using the True Taste website and ordering our premium Indian spices.',
-    url: 'https://www.truetaste.in/terms-and-conditions',
+    url: 'https://truetaste.in/terms-and-conditions',
     type: 'website',
     siteName: 'True Taste',
   },
   alternates: {
-    canonical: 'https://www.truetaste.in/terms-and-conditions',
+    canonical: 'https://truetaste.in/terms-and-conditions',
   },
 };
 
@@ -27,13 +27,13 @@ export default function TermsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.truetaste.in',
+        item: 'https://truetaste.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Terms & Conditions',
-        item: 'https://www.truetaste.in/terms-and-conditions',
+        item: 'https://truetaste.in/terms-and-conditions',
       },
     ],
   };

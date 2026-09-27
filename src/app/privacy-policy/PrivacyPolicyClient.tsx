@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -233,7 +233,7 @@ export default function PrivacyPolicyClient() {
                 <p>
                   This Privacy Policy applies to <strong>True Taste</strong> (operating under business name Delhi Wally, based at New Delhi, India) and governs the collection, use, retention, disclosure, and protection of information obtained through our official website located at{' '}
                   <Link href="/" className="text-[#2E5E2E] font-medium underline underline-offset-2">
-                    https://www.truetaste.in
+                    https://truetaste.in
                   </Link>
                   , as well as associated customer communication channels.
                 </p>

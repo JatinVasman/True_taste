@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { Playfair_Display, Lato } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ToastContainer } from '@/components/Toast';
+import { CartProvider } from '@/components/CartManager';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -23,7 +24,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.truetaste.in'),
+  metadataBase: new URL('https://truetaste.in'),
   title: {
     default: 'True Taste — Pure Spices, True Flavors',
     template: '%s | True Taste',
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://www.truetaste.in',
+    url: 'https://truetaste.in',
     siteName: 'True Taste',
     title: 'True Taste — Pure Spices, True Flavors',
     description:
@@ -79,10 +80,12 @@ export default function RootLayout({
       </head>
       <body className="bg-[#FFF8EF] antialiased">
         <AuthProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ToastContainer />
+          <CartProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <ToastContainer />
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

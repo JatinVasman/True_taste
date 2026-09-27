@@ -26,24 +26,56 @@ export interface AuthResult {
 
 export type { User, Session };
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+// ── Error sanitizers ───────────────────────────────────────────────────────
 
-/** Returns a clean, user-safe error message from Supabase auth errors. */
-function sanitizeAuthError(message: string): string {
-  // Avoid exposing implementation details or enumerating whether emails exist
+/**
+ * Sanitizes errors from signInWithPassword().
+ * Never maps anything to a "link" error — login has no links.
+ */
+function sanitizeSignInError(message: string): string {
   const lower = message.toLowerCase();
 
+  // Supabase returns "Invalid login credentials" for wrong email/password.
+  // Must be checked before any generic 'invalid' check.
   if (lower.includes('invalid login credentials') || lower.includes('invalid password')) {
     return 'Incorrect email or password. Please try again.';
   }
   if (lower.includes('email not confirmed')) {
     return 'Please verify your email address before signing in.';
   }
-  if (lower.includes('user already registered') || lower.includes('already been registered')) {
+  // email_provider_disabled — Email logins are disabled in Supabase dashboard
+  if (lower.includes('email logins are disabled') || lower.includes('email provider disabled')) {
+    return 'Email sign-in is not enabled. Please contact support.';
+  }
+  if (lower.includes('rate limit') || lower.includes('too many requests')) {
+    return 'Too many sign-in attempts. Please wait a few minutes and try again.';
+  }
+  if (lower.includes('network') || lower.includes('fetch') || lower.includes('failed to fetch')) {
+    return 'Network error. Please check your connection and try again.';
+  }
+
+  return 'Sign in failed. Please try again.';
+}
+
+/**
+ * Sanitizes errors from signUp().
+ * Never maps anything to a "link" error — signup has no links.
+ */
+function sanitizeSignUpError(message: string): string {
+  const lower = message.toLowerCase();
+
+  if (lower.includes('user already registered') || lower.includes('already been registered') || lower.includes('already registered')) {
     return 'An account with this email address already exists.';
   }
-  if (lower.includes('password should be at least')) {
+  if (lower.includes('password should be at least') || lower.includes('password must be')) {
     return 'Password must be at least 8 characters long.';
+  }
+  if (lower.includes('invalid email') || lower.includes('unable to validate')) {
+    return 'Please enter a valid email address.';
+  }
+  // email_provider_disabled — Email signups are disabled in Supabase dashboard
+  if (lower.includes('email signups are disabled') || lower.includes('email provider disabled')) {
+    return 'Email sign-up is not enabled. Please contact support.';
   }
   if (lower.includes('rate limit') || lower.includes('too many requests')) {
     return 'Too many attempts. Please wait a few minutes and try again.';
@@ -51,14 +83,31 @@ function sanitizeAuthError(message: string): string {
   if (lower.includes('network') || lower.includes('fetch') || lower.includes('failed to fetch')) {
     return 'Network error. Please check your connection and try again.';
   }
+
+  return 'Account creation failed. Please try again.';
+}
+
+/**
+ * Sanitizes errors from token/link operations:
+ * updatePassword, and any token-exchange flows.
+ * The 'invalid' catch-all is ONLY appropriate here.
+ */
+function sanitizeTokenError(message: string): string {
+  const lower = message.toLowerCase();
+
   if (lower.includes('token has expired') || lower.includes('expired')) {
     return 'This link has expired. Please request a new one.';
   }
   if (lower.includes('invalid token') || lower.includes('invalid')) {
     return 'This link is invalid or has already been used.';
   }
+  if (lower.includes('rate limit') || lower.includes('too many requests')) {
+    return 'Too many attempts. Please wait a few minutes and try again.';
+  }
+  if (lower.includes('network') || lower.includes('fetch') || lower.includes('failed to fetch')) {
+    return 'Network error. Please check your connection and try again.';
+  }
 
-  // Generic fallback — do not expose raw Supabase messages
   return 'Something went wrong. Please try again.';
 }
 
@@ -86,11 +135,12 @@ export async function signUp(
     password,
     options: {
       data: { display_name: name, full_name: name },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/account`,
+      // Points to /auth/callback so the PKCE code can be exchanged for a session.
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/auth/callback`,
     },
   });
 
-  if (error) return { success: false, error: sanitizeAuthError(error.message) };
+  if (error) return { success: false, error: sanitizeSignUpError(error.message) };
 
   return {
     success: true,
@@ -108,7 +158,7 @@ export async function signIn(
 
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) return { success: false, error: sanitizeAuthError(error.message) };
+  if (error) return { success: false, error: sanitizeSignInError(error.message) };
 
   return {
     success: true,
@@ -122,7 +172,7 @@ export async function signOut(): Promise<AuthResult> {
   const supabase = getSupabaseClient()!;
 
   const { error } = await supabase.auth.signOut();
-  if (error) return { success: false, error: sanitizeAuthError(error.message) };
+  if (error) return { success: false, error: 'Sign out failed. Please try again.' };
 
   return { success: true };
 }
@@ -137,7 +187,7 @@ export async function requestPasswordReset(email: string): Promise<AuthResult> {
   const supabase = getSupabaseClient()!;
 
   await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/reset-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/auth/callback?next=/reset-password`,
   });
 
   // Always return success — do NOT reveal if email exists
@@ -150,7 +200,7 @@ export async function updatePassword(newPassword: string): Promise<AuthResult> {
 
   const { data, error } = await supabase.auth.updateUser({ password: newPassword });
 
-  if (error) return { success: false, error: sanitizeAuthError(error.message) };
+  if (error) return { success: false, error: sanitizeTokenError(error.message) };
 
   return { success: true, user: data.user };
 }

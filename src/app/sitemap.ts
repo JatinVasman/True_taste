@@ -1,9 +1,9 @@
-import type { MetadataRoute } from 'next';
+﻿import type { MetadataRoute } from 'next';
 import { products } from '@/lib/products';
 import { cities } from '@/lib/cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.truetaste.in';
+  const baseUrl = 'https://truetaste.in';
   const now = new Date();
 
   // Core pages

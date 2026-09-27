@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -243,7 +243,7 @@ export default function TermsClient() {
                 <p>
                   By accessing, browsing, interacting with, or purchasing spices from our website at{' '}
                   <Link href="/" className="text-[#2E5E2E] font-medium underline underline-offset-2">
-                    https://www.truetaste.in
+                    https://truetaste.in
                   </Link>
                   , you signify that you have read, comprehended, and unconditionally agree to be bound by these Terms and our related{' '}
                   <Link href="/privacy-policy" className="text-[#2E5E2E] font-medium underline underline-offset-2">
