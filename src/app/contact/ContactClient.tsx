@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, MessageCircle, Send, Leaf } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Leaf } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 
 /* =============================================
@@ -39,6 +39,8 @@ export default function ContactClient() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -46,10 +48,31 @@ export default function ContactClient() {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send the form data
-    setSubmitted(true);
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setSubmitError(data.error ?? 'Something went wrong. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -282,12 +305,29 @@ export default function ContactClient() {
                           />
                         </div>
 
+                        {submitError && (
+                          <p className="font-lato text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">
+                            {submitError}
+                          </p>
+                        )}
+
                         <button
                           type="submit"
+                          disabled={isSubmitting}
                           className="btn-primary w-full justify-center gap-2"
+                          style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
                         >
-                          <Send className="w-4 h-4" />
-                          Send Enquiry
+                          {isSubmitting ? (
+                            <>
+                              <span className="w-4 h-4 border-2 border-[#F2E6C9]/40 border-t-[#F2E6C9] rounded-full animate-spin" />
+                              Sending…
+                            </>
+                          ) : (
+                            <>
+                              <Send className="w-4 h-4" />
+                              Send Enquiry
+                            </>
+                          )}
                         </button>
                       </form>
                     </>

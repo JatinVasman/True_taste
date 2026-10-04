@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Leaf } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
+
 import AnimatedSection from '@/components/AnimatedSection';
 
 export default function CartClient() {
@@ -14,7 +15,10 @@ export default function CartClient() {
   const clearCart = useCartStore((s) => s.clearCart);
   const subtotal = useCartStore((s) => s.subtotal());
 
+
   const isEmpty = items.length === 0;
+  const shipping = subtotal >= 499 ? 0 : subtotal > 0 ? 60 : 0;
+  const total = subtotal + shipping;
 
   return (
     <div className="min-h-screen bg-[#FFF8EF] px-4 py-28">
@@ -183,24 +187,34 @@ export default function CartClient() {
                   style={{ background: 'linear-gradient(90deg, rgba(122,163,62,0.25), transparent)' }}
                 />
 
-                {/* Subtotal */}
+                {/* Subtotal + shipping */}
                 <div className="flex items-center justify-between mb-1">
                   <p className="font-lato text-sm text-[#7a6b4e]">Subtotal</p>
-                  <p className="font-playfair font-bold text-[#2E5E2E] text-xl">₹{subtotal}</p>
+                  <p className="font-lato font-bold text-[#2E5E2E] text-sm">₹{subtotal}</p>
+                </div>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="font-lato text-sm text-[#7a6b4e]">Shipping</p>
+                  <p className="font-lato font-bold text-[#2E5E2E] text-sm">
+                    {shipping === 0 ? (subtotal > 0 ? 'FREE' : '—') : `₹${shipping}`}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="font-playfair font-bold text-[#2E5E2E] text-lg">Total</p>
+                  <p className="font-playfair font-bold text-[#2E5E2E] text-xl">₹{total}</p>
                 </div>
                 <p className="font-lato text-[0.65rem] text-[#7a6b4e] mb-6 leading-relaxed">
-                  Shipping and taxes will be calculated at checkout. Final amount validated server-side.
+                  Free shipping on orders ₹499+. Final amount validated server-side.
                 </p>
 
                 {/* Checkout CTA */}
-                <div
-                  className="p-4 rounded-xl text-center mb-4"
-                  style={{ background: 'rgba(46,94,46,0.04)', border: '1px solid rgba(122,163,62,0.12)' }}
+                <Link
+                  id="proceed-to-checkout-btn"
+                  href="/checkout"
+                  className="btn-primary w-full justify-center mb-3"
                 >
-                  <p className="font-lato text-xs text-[#7a6b4e] leading-relaxed">
-                    Checkout coming soon. Browse our full range in the meantime.
-                  </p>
-                </div>
+                  Proceed to Checkout
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
 
                 <Link href="/products" className="btn-outline w-full justify-center">
                   <Leaf className="w-4 h-4" />

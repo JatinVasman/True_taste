@@ -11,15 +11,24 @@ import { create } from 'zustand';
 import { useEffect, useCallback } from 'react';
 import { CheckCircle2, XCircle, Info, X } from 'lucide-react';
 
+import Link from 'next/link';
+
 // ── Store ──────────────────────────────────────────────────────────────────
 
 type ToastType = 'success' | 'error' | 'info';
+
+export interface ToastAction {
+  label: string;
+  onClick?: () => void;
+  href?: string;
+}
 
 interface Toast {
   id: string;
   type: ToastType;
   message: string;
   duration?: number;
+  action?: ToastAction;
 }
 
 interface ToastStore {
@@ -44,15 +53,18 @@ export const useToastStore = create<ToastStore>((set) => ({
 export function toast(
   message: string,
   type: ToastType = 'info',
-  duration = 4000
+  duration = 4000,
+  action?: ToastAction
 ): void {
-  useToastStore.getState().add({ message, type, duration });
+  useToastStore.getState().add({ message, type, duration, action });
 }
 
-export const toastSuccess = (msg: string, d?: number) =>
-  toast(msg, 'success', d);
-export const toastError = (msg: string, d?: number) => toast(msg, 'error', d);
-export const toastInfo = (msg: string, d?: number) => toast(msg, 'info', d);
+export const toastSuccess = (msg: string, d?: number, action?: ToastAction) =>
+  toast(msg, 'success', d, action);
+export const toastError = (msg: string, d?: number, action?: ToastAction) =>
+  toast(msg, 'error', d, action);
+export const toastInfo = (msg: string, d?: number, action?: ToastAction) =>
+  toast(msg, 'info', d, action);
 
 // ── Components ─────────────────────────────────────────────────────────────
 
@@ -84,9 +96,35 @@ function ToastItem({ toast: t }: { toast: Toast }) {
       style={{ animation: 'toastIn 0.3s cubic-bezier(0.22,1,0.36,1)' }}
     >
       {icons[t.type]}
-      <p className="font-lato text-sm text-[#2E5E2E] flex-1 leading-relaxed">
-        {t.message}
-      </p>
+      <div className="flex-1 min-w-0">
+        <p className="font-lato text-sm text-[#2E5E2E] leading-relaxed">
+          {t.message}
+        </p>
+        {t.action && (
+          <div className="mt-1.5 flex items-center gap-2">
+            {t.action.href ? (
+              <Link
+                href={t.action.href}
+                onClick={() => remove(t.id)}
+                className="inline-flex items-center text-xs font-lato font-bold text-[#7AA33E] hover:text-[#2E5E2E] underline underline-offset-2 transition-colors"
+              >
+                {t.action.label}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  t.action?.onClick?.();
+                  remove(t.id);
+                }}
+                className="inline-flex items-center text-xs font-lato font-bold text-[#7AA33E] hover:text-[#2E5E2E] underline underline-offset-2 transition-colors cursor-pointer"
+              >
+                {t.action.label}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
       <button
         onClick={() => remove(t.id)}
         aria-label="Dismiss notification"

@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { Leaf, Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 
 
@@ -46,8 +47,14 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-5 group" aria-label="True Taste Home">
-              <div className="w-10 h-10 bg-[#F2E6C9] rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                <Leaf className="w-5 h-5 text-[#2E5E2E]" />
+              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="True Taste Logo"
+                  width={44}
+                  height={44}
+                  className="rounded-full object-cover"
+                />
               </div>
               <span className="font-playfair font-bold text-[#F2E6C9] text-xl leading-tight">
                 True Taste

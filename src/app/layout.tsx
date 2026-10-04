@@ -1,11 +1,11 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Playfair_Display, Lato } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { AuthProvider } from '@/contexts/AuthContext';
 import { ToastContainer } from '@/components/Toast';
 import { CartProvider } from '@/components/CartManager';
+import CartDrawer from '@/components/CartDrawer';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'True Taste' }],
   creator: 'True Taste',
   publisher: 'True Taste',
+  icons: {
+    icon: '/images/logo.jpg',
+    apple: '/images/logo.jpg',
+    shortcut: '/images/logo.jpg',
+  },
   robots: {
     index: true,
     follow: true,
@@ -76,17 +81,17 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/logo.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/images/logo.jpg" />
       </head>
       <body className="bg-[#FFF8EF] antialiased">
-        <AuthProvider>
-          <CartProvider>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-            <ToastContainer />
-          </CartProvider>
-        </AuthProvider>
+        <CartProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <CartDrawer />
+          <ToastContainer />
+        </CartProvider>
       </body>
     </html>
   );

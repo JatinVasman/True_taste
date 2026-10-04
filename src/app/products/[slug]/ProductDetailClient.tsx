@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowLeft, Phone, Mail, Leaf, Check, ShoppingCart } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Phone, Mail, Leaf, Check, ShoppingCart, Plus, Minus } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import ProductCard from '@/components/ProductCard';
 import { products, type Product } from '@/lib/products';
 import { useCartStore } from '@/lib/cart';
-import { toastSuccess } from '@/components/Toast';
+import { useCartDrawer } from '@/lib/cartDrawer';
 
 type Size = '50g' | '100g' | '200g';
 
@@ -29,14 +30,16 @@ interface Props {
 }
 
 export default function ProductDetailClient({ product }: Props) {
+  const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<Size>('100g');
+  const [quantity, setQuantity] = useState<number>(1);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [addedKey, setAddedKey] = useState<string | null>(null);
+
   const addItem = useCartStore((s) => s.addItem);
+  const openCart = useCartDrawer((s) => s.openCart);
 
   function handleAddToCart() {
     if (!product.pricing) return;
-    const key = `${product.id}:${selectedSize}`;
     addItem({
       productId: product.id,
       slug: product.slug,
@@ -44,10 +47,23 @@ export default function ProductDetailClient({ product }: Props) {
       image: packImageFor(product, selectedSize),
       size: selectedSize,
       unitPrice: product.pricing[selectedSize],
+      quantity,
     });
-    toastSuccess(`${product.name} (${selectedSize}) added to cart!`);
-    setAddedKey(key);
-    setTimeout(() => setAddedKey(null), 1800);
+    openCart();
+  }
+
+  function handleBuyNow() {
+    if (!product.pricing) return;
+    addItem({
+      productId: product.id,
+      slug: product.slug,
+      name: product.name,
+      image: packImageFor(product, selectedSize),
+      size: selectedSize,
+      unitPrice: product.pricing[selectedSize],
+      quantity,
+    });
+    router.push('/checkout');
   }
 
   const otherProducts = products.filter((p) => p.id !== product.id).slice(0, 3);
@@ -414,27 +430,78 @@ export default function ProductDetailClient({ product }: Props) {
                 </div>
               </AnimatedSection>
 
-              {/* CTAs */}
-              <AnimatedSection delay={0.4} className="flex flex-wrap gap-4 mb-10">
+              {/* CTAs & Quantity Selector */}
+              <AnimatedSection delay={0.4} className="mb-10">
                 {product.pricing ? (
-                  <button
-                    onClick={handleAddToCart}
-                    id={`add-to-cart-${product.slug}`}
-                    className="btn-primary"
-                    aria-label={`Add ${product.name} ${selectedSize} to cart`}
-                    style={{
-                      background: addedKey === `${product.id}:${selectedSize}` ? '#7AA33E' : undefined,
-                      transition: 'background 300ms ease',
-                    }}
-                  >
-                    <ShoppingCart className="w-4 h-4" />
-                    {addedKey === `${product.id}:${selectedSize}` ? 'Added!' : 'Add to Cart'}
-                  </button>
-                ) : null}
-                <Link href="/contact" className={product.pricing ? 'btn-outline' : 'btn-primary'}>
-                  Enquire About This Spice
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <div className="space-y-4">
+                    {/* Standard E-Commerce Quantity Selector */}
+                    <div className="flex items-center gap-3">
+                      <span className="font-lato text-xs font-bold uppercase tracking-wider text-[#2E5E2E]">
+                        Quantity:
+                      </span>
+                      <div className="inline-flex items-center rounded-xl bg-white border border-[#2E5E2E]/20 shadow-sm overflow-hidden">
+                        <button
+                          type="button"
+                          onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                          disabled={quantity <= 1}
+                          className="w-10 h-10 flex items-center justify-center text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-10 text-center font-lato font-bold text-base text-[#2E5E2E]">
+                          {quantity}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+                          className="w-10 h-10 flex items-center justify-center text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Action buttons row */}
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <button
+                        type="button"
+                        onClick={handleAddToCart}
+                        id={`add-to-cart-${product.slug}`}
+                        className="btn-primary flex-1 justify-center py-3.5 text-xs sm:text-sm shadow-md"
+                        aria-label={`Add ${quantity} ${product.name} ${selectedSize} to cart`}
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Add to Cart • ₹{quantity * product.pricing[selectedSize]}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleBuyNow}
+                        className="btn-outline flex-1 justify-center py-3.5 text-xs sm:text-sm font-bold"
+                        style={{
+                          background: '#7AA33E',
+                          color: '#FFF8EF',
+                          borderColor: '#7AA33E',
+                          boxShadow: '0 2px 12px rgba(122, 163, 62, 0.25)',
+                        }}
+                      >
+                        <span>Buy Now</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <p className="font-lato text-[0.7rem] text-[#7a6b4e] flex items-center gap-1.5 pt-1">
+                      <span>✓</span> Pure & fresh • Dispatched in 24 hours • Free delivery over ₹499
+                    </p>
+                  </div>
+                ) : (
+                  <Link href="/contact" className="btn-primary">
+                    Enquire About This Spice
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                )}
               </AnimatedSection>
 
               {/* Brand tagline */}

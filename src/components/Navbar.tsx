@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect, useSyncExternalStore } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Leaf, ShoppingCart, User, LogOut, LogIn } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
+import { useCartDrawer } from '@/lib/cartDrawer';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -22,8 +23,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const [prevPathname, setPrevPathname] = useState(pathname);
 
-  const { isAuthenticated, signOut, isLoading } = useAuth();
   const totalCount = useCartStore((s) => s.totalCount());
+  const openCart = useCartDrawer((s) => s.openCart);
   // Hydration guard via useSyncExternalStore — the canonical React pattern
   // for values that differ between SSR and client (avoids setState-in-effect).
   const isMounted = useSyncExternalStore(
@@ -78,11 +79,15 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-5 py-2.5">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group" aria-label="True Taste Home">
-              <div
-                className="flex-shrink-0 flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
-                style={{ width: '2rem', height: '2rem', background: '#2E5E2E' }}
-              >
-                <Leaf className="w-3.5 h-3.5 text-[#F2E6C9]" strokeWidth={2.2} />
+              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="True Taste Logo"
+                  width={34}
+                  height={34}
+                  className="rounded-full object-cover"
+                  priority
+                />
               </div>
               <span className="hidden sm:block font-playfair font-bold text-[#2E5E2E] text-[0.95rem] leading-none">
                 True Taste
@@ -102,13 +107,14 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right section: Cart + Auth + Shop CTA + Mobile toggle */}
+            {/* Right section: Cart + Shop CTA + Mobile toggle */}
             <div className="flex items-center gap-2">
               {/* Cart icon */}
-              <Link
-                href="/cart"
+              <button
+                type="button"
+                onClick={openCart}
                 aria-label={cartCount > 0 ? `View cart — ${cartCount} item${cartCount === 1 ? '' : 's'}` : 'View cart'}
-                className="relative flex items-center justify-center w-8 h-8 rounded-full text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors"
+                className="relative flex items-center justify-center w-8 h-8 rounded-full text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors cursor-pointer"
               >
                 <ShoppingCart className="w-[17px] h-[17px]" strokeWidth={2} />
                 {cartCount > 0 && (
@@ -126,58 +132,7 @@ export default function Navbar() {
                     {cartCount > 9 ? '9+' : cartCount}
                   </span>
                 )}
-              </Link>
-
-              {/* Auth button */}
-              {!isLoading && (
-                <>
-                  {isAuthenticated ? (
-                    <div className="flex items-center gap-1 sm:gap-1.5">
-                      <Link
-                        href="/account"
-                        className="hidden sm:inline-flex items-center gap-1.5 btn-outline whitespace-nowrap"
-                        style={{ padding: '0.52rem 1.15rem', fontSize: '0.68rem', borderWidth: '1.5px' }}
-                      >
-                        <User className="w-3.5 h-3.5 text-[#2E5E2E]" />
-                        <span>Account</span>
-                      </Link>
-                      <Link
-                        href="/account"
-                        aria-label="My account"
-                        className="sm:hidden flex items-center justify-center w-8 h-8 rounded-full text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors"
-                      >
-                        <User className="w-[17px] h-[17px]" strokeWidth={2} />
-                      </Link>
-                      <button
-                        onClick={() => signOut()}
-                        aria-label="Sign out"
-                        title="Sign out"
-                        className="flex items-center justify-center w-8 h-8 rounded-full text-[#2E5E2E] hover:bg-red-50 hover:text-red-600 transition-colors"
-                      >
-                        <LogOut className="w-[15px] h-[15px]" strokeWidth={2} />
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <Link
-                        href="/login"
-                        className="hidden sm:inline-flex items-center gap-1.5 btn-outline whitespace-nowrap"
-                        style={{ padding: '0.52rem 1.15rem', fontSize: '0.68rem', borderWidth: '1.5px' }}
-                      >
-                        <LogIn className="w-3.5 h-3.5" />
-                        <span>Sign In</span>
-                      </Link>
-                      <Link
-                        href="/login"
-                        aria-label="Sign in"
-                        className="sm:hidden flex items-center justify-center w-8 h-8 rounded-full text-[#2E5E2E] hover:bg-[#7AA33E]/10 transition-colors"
-                      >
-                        <LogIn className="w-[17px] h-[17px]" strokeWidth={2} />
-                      </Link>
-                    </>
-                  )}
-                </>
-              )}
+              </button>
 
               <Link
                 href="/products"
@@ -228,8 +183,14 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="w-14 h-14 bg-[#2E5E2E] rounded-full flex items-center justify-center mb-3">
-                <Leaf className="w-6 h-6 text-[#F2E6C9]" />
+              <div className="mb-3">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="True Taste Logo"
+                  width={72}
+                  height={72}
+                  className="rounded-full object-cover shadow-lg"
+                />
               </div>
               <span className="font-playfair font-bold text-[#2E5E2E] text-2xl">True Taste</span>
               <p className="text-[#7AA33E] text-[0.65rem] tracking-[0.18em] font-lato font-bold uppercase mt-1">
@@ -256,42 +217,6 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-
-              {/* Mobile auth links */}
-              {!isLoading && (
-                <motion.div
-                  className="flex flex-col items-center gap-2 mt-2"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 + navLinks.length * 0.07, duration: 0.5 }}
-                >
-                  {isAuthenticated ? (
-                    <>
-                      <Link
-                        href="/account"
-                        className="font-playfair text-4xl font-bold text-[#2E5E2E] hover:text-[#7AA33E] transition-colors"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        Account
-                      </Link>
-                      <button
-                        onClick={() => { signOut(); setMenuOpen(false); }}
-                        className="font-lato text-sm font-bold uppercase tracking-wider text-red-500 hover:text-red-700 transition-colors mt-1"
-                      >
-                        Sign Out
-                      </button>
-                    </>
-                  ) : (
-                    <Link
-                      href="/login"
-                      className="font-playfair text-4xl font-bold text-[#2E5E2E] hover:text-[#7AA33E] transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Sign In
-                    </Link>
-                  )}
-                </motion.div>
-              )}
             </nav>
 
             <motion.div
@@ -303,15 +228,15 @@ export default function Navbar() {
               <Link href="/products" className="btn-primary" onClick={() => setMenuOpen(false)}>
                 Explore All Spices
               </Link>
-              <Link
-                href="/cart"
-                className="btn-outline"
-                onClick={() => setMenuOpen(false)}
+              <button
+                type="button"
+                className="btn-outline cursor-pointer"
+                onClick={() => { setMenuOpen(false); openCart(); }}
                 aria-label={cartCount > 0 ? `Cart — ${cartCount} item${cartCount === 1 ? '' : 's'}` : 'Cart'}
               >
                 <ShoppingCart className="w-4 h-4" />
                 Cart{cartCount > 0 ? ` (${cartCount})` : ''}
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         )}
