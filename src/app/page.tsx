@@ -22,6 +22,7 @@ export default function HomePage() {
           HERO
           =========================== */}
       <section
+        id="hero"
         className="relative min-h-screen flex items-center overflow-hidden"
         style={{ background: '#FFF8EF' }}
         aria-label="Hero"

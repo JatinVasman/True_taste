@@ -47,13 +47,14 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-5 group" aria-label="True Taste Home">
-              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/true-taste-logo.png"
                   alt="True Taste Logo"
-                  width={44}
-                  height={44}
-                  className="rounded-full object-cover"
+                  width={42}
+                  height={42}
+                  className="object-contain"
+                  unoptimized
                 />
               </div>
               <span className="font-playfair font-bold text-[#F2E6C9] text-xl leading-tight">

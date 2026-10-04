@@ -36,9 +36,12 @@ export const metadata: Metadata = {
   creator: 'True Taste',
   publisher: 'True Taste',
   icons: {
-    icon: '/images/logo.jpg',
-    apple: '/images/logo.jpg',
-    shortcut: '/images/logo.jpg',
+    icon: [
+      { url: '/favicon.ico?v=4', sizes: 'any' },
+      { url: '/icon.png?v=4', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png?v=4',
+    shortcut: '/favicon.ico?v=4',
   },
   robots: {
     index: true,
@@ -81,8 +84,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="icon" href="/images/logo.jpg" type="image/jpeg" />
-        <link rel="apple-touch-icon" href="/images/logo.jpg" />
+        <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
+        <link rel="icon" href="/icon.png?v=4" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png?v=4" />
       </head>
       <body className="bg-[#FFF8EF] antialiased">
         <CartProvider>

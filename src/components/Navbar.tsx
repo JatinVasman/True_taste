@@ -78,20 +78,33 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between px-5 py-2.5">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group" aria-label="True Taste Home">
-              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+            <Link
+              href="/#hero"
+              className="flex items-center group cursor-pointer"
+              aria-label="True Taste Home — Hero"
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  const heroEl = document.getElementById('hero');
+                  if (heroEl) {
+                    heroEl.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }
+              }}
+            >
+              <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/true-taste-logo.png"
                   alt="True Taste Logo"
-                  width={34}
-                  height={34}
-                  className="rounded-full object-cover"
+                  width={58}
+                  height={58}
+                  className="object-contain"
                   priority
+                  unoptimized
                 />
               </div>
-              <span className="hidden sm:block font-playfair font-bold text-[#2E5E2E] text-[0.95rem] leading-none">
-                True Taste
-              </span>
             </Link>
 
             {/* Desktop nav links */}
@@ -183,15 +196,32 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="mb-3">
+              <Link
+                href="/#hero"
+                className="mb-3 block cursor-pointer"
+                aria-label="True Taste Home — Hero"
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  if (pathname === '/') {
+                    e.preventDefault();
+                    const heroEl = document.getElementById('hero');
+                    if (heroEl) {
+                      heroEl.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }
+                }}
+              >
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/true-taste-logo.png"
                   alt="True Taste Logo"
-                  width={72}
-                  height={72}
-                  className="rounded-full object-cover shadow-lg"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  unoptimized
                 />
-              </div>
+              </Link>
               <span className="font-playfair font-bold text-[#2E5E2E] text-2xl">True Taste</span>
               <p className="text-[#7AA33E] text-[0.65rem] tracking-[0.18em] font-lato font-bold uppercase mt-1">
                 Pure Spices · True Flavors
