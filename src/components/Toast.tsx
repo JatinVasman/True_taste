@@ -8,7 +8,7 @@
  */
 
 import { create } from 'zustand';
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { CheckCircle2, XCircle, Info, X } from 'lucide-react';
 
 import Link from 'next/link';

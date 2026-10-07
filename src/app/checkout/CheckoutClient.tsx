@@ -128,7 +128,7 @@ export default function CheckoutClient() {
           <div className="eyebrow mb-3">Checkout</div>
           <h1 className="font-playfair font-bold text-[#2E5E2E] text-4xl md:text-5xl">Place Your Order</h1>
           <p className="font-lato text-[#7a6b4e] mt-3 text-sm max-w-lg">
-            Fill in your details and we'll send you a confirmation email. Our team will contact you to arrange delivery and payment.
+            Fill in your details and we&apos;ll send you a confirmation email. Our team will contact you to arrange delivery and payment.
           </p>
         </AnimatedSection>
 
@@ -358,7 +358,7 @@ export default function CheckoutClient() {
                   style={{ background: 'rgba(122,163,62,0.08)', border: '1px solid rgba(122,163,62,0.2)' }}>
                   <Mail className="w-4 h-4 text-[#7AA33E] flex-shrink-0 mt-0.5" />
                   <p className="font-lato text-[0.68rem] text-[#2E5E2E] leading-relaxed">
-                    We'll email you a confirmation and contact you to arrange payment and delivery.
+                    We&apos;ll email you a confirmation and contact you to arrange payment and delivery.
                   </p>
                 </div>
 
@@ -384,7 +384,7 @@ export default function CheckoutClient() {
                 </button>
 
                 <p className="font-lato text-[0.6rem] text-[#7a6b4e] text-center mt-3">
-                  No payment required now · We'll contact you to confirm
+                  No payment required now · We&apos;ll contact you to confirm
                 </p>
               </div>
             </AnimatedSection>

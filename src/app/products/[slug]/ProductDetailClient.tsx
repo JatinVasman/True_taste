@@ -1,13 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { ArrowRight, ArrowLeft, Phone, Mail, Leaf, Check, ShoppingCart, Plus, Minus } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import ProductCard from '@/components/ProductCard';
+import ProductImageGallery from '@/components/ProductImageGallery';
 import { products, type Product } from '@/lib/products';
 import { useCartStore } from '@/lib/cart';
 import { useCartDrawer } from '@/lib/cartDrawer';
@@ -15,6 +14,18 @@ import { useCartDrawer } from '@/lib/cartDrawer';
 type Size = '50g' | '100g' | '200g';
 
 const SIZES: Size[] = ['50g', '100g', '200g'];
+
+const SIZE_TO_INDEX: Record<Size, number> = {
+  '50g': 1,
+  '100g': 2,
+  '200g': 3,
+};
+
+const INDEX_TO_SIZE: Record<number, Size> = {
+  1: '50g',
+  2: '100g',
+  3: '200g',
+};
 
 function packImageFor(product: Product, size: Size): string {
   const map: Record<Size, string> = {
@@ -32,11 +43,23 @@ interface Props {
 export default function ProductDetailClient({ product }: Props) {
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<Size>('100g');
+  const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(1);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const addItem = useCartStore((s) => s.addItem);
   const openCart = useCartDrawer((s) => s.openCart);
+
+  function handleSelectSize(s: Size) {
+    setSelectedSize(s);
+    setActiveImageIndex(SIZE_TO_INDEX[s]);
+  }
+
+  function handleGalleryIndexChange(idx: number) {
+    setActiveImageIndex(idx);
+    if (INDEX_TO_SIZE[idx]) {
+      setSelectedSize(INDEX_TO_SIZE[idx]);
+    }
+  }
 
   function handleAddToCart() {
     if (!product.pricing) return;
@@ -74,68 +97,6 @@ export default function ProductDetailClient({ product }: Props) {
 
   return (
     <>
-      {/* Lightbox overlay */}
-      {lightboxOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${product.name} ${selectedSize} packaging full view`}
-          onClick={() => setLightboxOpen(false)}
-          onKeyDown={(e) => e.key === 'Escape' && setLightboxOpen(false)}
-          tabIndex={-1}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
-            background: 'rgba(10,14,10,0.92)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '1.5rem',
-            cursor: 'zoom-out',
-            backdropFilter: 'blur(6px)',
-          }}
-        >
-          <button
-            onClick={() => setLightboxOpen(false)}
-            aria-label="Close image"
-            style={{
-              position: 'absolute',
-              top: '1.25rem',
-              right: '1.25rem',
-              background: 'rgba(255,248,239,0.12)',
-              border: '1px solid rgba(255,248,239,0.2)',
-              borderRadius: '9999px',
-              width: '2.25rem',
-              height: '2.25rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#F2E6C9',
-              fontSize: '1rem',
-              lineHeight: 1,
-            }}
-          >
-            ✕
-          </button>
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '90vw', maxHeight: '90vh', cursor: 'default' }}
-          >
-            <Image
-              src={packImageFor(product, selectedSize)}
-              alt={`${product.name} ${selectedSize} packaging`}
-              width={1200}
-              height={420}
-              className="w-full h-auto rounded-2xl"
-              style={{ filter: 'drop-shadow(0 8px 40px rgba(0,0,0,0.5))' }}
-              priority
-            />
-          </div>
-        </div>
-      )}
-
       {/* ===========================
           BACK NAVIGATION
           =========================== */}
@@ -158,68 +119,15 @@ export default function ProductDetailClient({ product }: Props) {
         aria-labelledby="product-heading"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-            {/* LEFT — Product Images */}
-            <div>
-              {/* Hero spice visual */}
-              <motion.div
-                className="rounded-3xl overflow-hidden mb-6"
-                style={{ aspectRatio: '1', background: 'linear-gradient(135deg, #fdf6e9 0%, #f2e6c9 80%)' }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Image
-                  src={product.heroImage}
-                  alt={`${product.name} — premium Indian spice`}
-                  width={700}
-                  height={700}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </motion.div>
-
-              {/* Packaging preview */}
-              <div>
-                <p className="font-lato text-xs font-bold uppercase tracking-widest text-[#7AA33E] mb-3">
-                  Product Packaging
-                </p>
-                <button
-                  onClick={() => setLightboxOpen(true)}
-                  aria-label={`View ${product.name} ${selectedSize} packaging full size`}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'zoom-in',
-                  }}
-                >
-                  <motion.div
-                    className="rounded-2xl overflow-hidden border border-[#F2E6C9]"
-                    style={{
-                      background: 'linear-gradient(135deg, #fdf6e9 0%, #f2e6c9 60%)',
-                      padding: '1.25rem',
-                    }}
-                    key={selectedSize}
-                    initial={{ opacity: 0.7, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.35 }}
-                  >
-                    <Image
-                      src={packImageFor(product, selectedSize)}
-                      alt={`${product.name} ${selectedSize} packaging`}
-                      width={800}
-                      height={280}
-                      className="w-full object-contain rounded-xl"
-                      style={{ filter: 'drop-shadow(0 4px 16px rgba(90,46,13,0.15))' }}
-                    />
-                  </motion.div>
-                </button>
-              </div>
+            {/* LEFT — Product Images (Flipkart-Style Multi-Image Showcase) */}
+            <div className="w-full">
+              <ProductImageGallery
+                product={product}
+                activeIndex={activeImageIndex}
+                onIndexChange={handleGalleryIndexChange}
+              />
             </div>
 
             {/* RIGHT — Product Info */}
@@ -281,7 +189,7 @@ export default function ProductDetailClient({ product }: Props) {
                         return (
                           <button
                             key={s}
-                            onClick={() => setSelectedSize(s)}
+                            onClick={() => handleSelectSize(s)}
                             aria-pressed={active}
                             aria-label={`${s} — ₹${product.pricing![s]}`}
                             style={{
@@ -353,7 +261,7 @@ export default function ProductDetailClient({ product }: Props) {
                         <button
                           key={s}
                           className={`qty-pill ${selectedSize === s ? 'active' : ''}`}
-                          onClick={() => setSelectedSize(s)}
+                          onClick={() => handleSelectSize(s)}
                           aria-pressed={selectedSize === s}
                           aria-label={`Select ${s} size`}
                         >

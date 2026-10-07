@@ -1,5 +1,15 @@
 // Product data — sourced from verified packaging reference materials
 
+export interface ProductGalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  label: string;
+  badge: string;
+  size?: '50g' | '100g' | '200g';
+  isHero?: boolean;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -35,9 +45,9 @@ export const products: Product[] = [
     accentColor: '#E74C3C',
     bgGradient: 'from-red-50 to-amber-50',
     heroImage: '/images/red-chilli.jpg',
-    packImage50g: '/images/pack-50g-1.jpg',
-    packImage100g: '/images/pack-100g-1.jpg',
-    packImage200g: '/images/pack-200g-1.jpg',
+    packImage50g: '/images/Red Chilli -50.png',
+    packImage100g: '/images/Red-Chill-100g.png',
+    packImage200g: '/images/Red-Chilli 200g.png',
     storageNote: 'Store in a cool, dry place away from direct sunlight. Keep the container tightly closed after every use.',
     packagingTagline: 'Pure Spices, True Love',
     pricing: { '50g': 48, '100g': 96, '200g': 186 },
@@ -55,9 +65,9 @@ export const products: Product[] = [
     accentColor: '#F1C40F',
     bgGradient: 'from-yellow-50 to-amber-50',
     heroImage: '/images/turmeric.jpg',
-    packImage50g: '/images/pack-50g-2.jpg',
-    packImage100g: '/images/pack-100g-2.jpg',
-    packImage200g: '/images/pack-200g-2.jpg',
+    packImage50g: '/images/Turmaric-50g.png',
+    packImage100g: '/images/Turmaric-100g.png',
+    packImage200g: '/images/Turmaric-200g.png',
     storageNote: 'Store in a cool, dry place away from direct sunlight. Keep the container tightly closed after every use.',
     packagingTagline: 'Pure Spices, True Love',
     pricing: { '50g': 47, '100g': 94, '200g': 189 },
@@ -75,9 +85,9 @@ export const products: Product[] = [
     accentColor: '#9A7D0A',
     bgGradient: 'from-green-50 to-lime-50',
     heroImage: '/images/dhaniya.jpg',
-    packImage50g: '/images/pack-50g-3.jpg',
-    packImage100g: '/images/pack-100g-3.jpg',
-    packImage200g: '/images/pack-200g-3.jpg',
+    packImage50g: '/images/Dhaniya Powder 50g.png',
+    packImage100g: '/images/Dhaniya Powder 100g.png',
+    packImage200g: '/images/Dhaniya Powder 200g.png',
     storageNote: 'Store in a cool, dry place away from direct sunlight. Keep the container tightly closed after every use.',
     packagingTagline: 'Pure Spices, True Love',
     pricing: { '50g': 47, '100g': 94, '200g': 189 },
@@ -95,9 +105,9 @@ export const products: Product[] = [
     accentColor: '#873B20',
     bgGradient: 'from-stone-50 to-amber-50',
     heroImage: '/images/jeera.jpg',
-    packImage50g: '/images/pack-50g-4.jpg',
-    packImage100g: '/images/pack-100g-4.jpg',
-    packImage200g: '/images/pack-200g-4.jpg',
+    packImage50g: '/images/Jeera-50g.png',
+    packImage100g: '/images/Jeera-100g.png',
+    packImage200g: '/images/Jeera-200g.png',
     storageNote: 'Store in a cool, dry place away from direct sunlight. Keep the container tightly closed after every use.',
     packagingTagline: 'Pure Spices, True Love',
     pricing: { '50g': 48, '100g': 96, '200g': 186 },
@@ -115,9 +125,9 @@ export const products: Product[] = [
     accentColor: '#935116',
     bgGradient: 'from-amber-50 to-orange-50',
     heroImage: '/images/garam-masala.jpg',
-    packImage50g: '/images/pack-50g-5.jpg',
-    packImage100g: '/images/pack-100g-5.jpg',
-    packImage200g: '/images/pack-200g-5.jpg',
+    packImage50g: '/images/Garam Masala-50.png',
+    packImage100g: '/images/Garam Masala-100g.png',
+    packImage200g: '/images/Garam Masala-200g.png',
     wholeSpices: ['Cinnamon', 'Cardamom', 'Star Anise', 'Cloves', 'Black Pepper'],
     storageNote: 'Store in a cool, dry place away from direct sunlight. Keep the container tightly closed after every use.',
     packagingTagline: 'Pure Spices, True Love',
@@ -126,6 +136,43 @@ export const products: Product[] = [
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
+}
+
+export function getProductGalleryItems(product: Product): ProductGalleryItem[] {
+  return [
+    {
+      id: `${product.slug}-hero`,
+      src: product.heroImage,
+      alt: `${product.name} — Pure Spice Visual`,
+      label: 'Spice Overview',
+      badge: 'Spice',
+      isHero: true,
+    },
+    {
+      id: `${product.slug}-50g`,
+      src: product.packImage50g,
+      alt: `${product.name} — 50g Packaging`,
+      label: '50g Pack',
+      badge: '50g',
+      size: '50g',
+    },
+    {
+      id: `${product.slug}-100g`,
+      src: product.packImage100g,
+      alt: `${product.name} — 100g Packaging`,
+      label: '100g Pack',
+      badge: '100g',
+      size: '100g',
+    },
+    {
+      id: `${product.slug}-200g`,
+      src: product.packImage200g,
+      alt: `${product.name} — 200g Packaging`,
+      label: '200g Pack',
+      badge: '200g',
+      size: '200g',
+    },
+  ];
 }
 
 export type ProductCategory = 'all' | 'ground' | 'whole' | 'blend';
