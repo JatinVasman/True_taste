@@ -132,7 +132,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/images/hero-spice.jpg"
-                  alt="Premium Indian spices in wooden bowls — red chilli, turmeric, garam masala — True Taste collection"
+                  alt="Premium Indian spices in wooden bowls — red chilli, turmeric, garam masala — Delhi Wally collection"
                   fill
                   priority
                   className="object-cover"
@@ -159,7 +159,7 @@ export default function HomePage() {
                   5 Essentials
                 </p>
                 <p className="font-lato uppercase tracking-widest opacity-50 mt-0.5" style={{ fontSize: '0.5rem' }}>
-                  One True Taste
+                  Delhi Wally
                 </p>
               </motion.div>
 
@@ -210,7 +210,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/images/story-editorial.jpg"
-                  alt="Wooden spice box with True Taste spices"
+                  alt="Wooden spice box with Delhi Wally spices"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -229,7 +229,7 @@ export default function HomePage() {
 
             <div>
               <AnimatedSection delay={0.1}>
-                <p className="eyebrow mb-4">The True Taste Story</p>
+                <p className="eyebrow mb-4">The Delhi Wally Story</p>
               </AnimatedSection>
               <AnimatedSection delay={0.18}>
                 <h2 className="text-headline text-[#2E5E2E] mb-5" id="signature-heading">
@@ -244,7 +244,7 @@ export default function HomePage() {
               </AnimatedSection>
               <AnimatedSection delay={0.28}>
                 <p className="font-lato text-[#7a6b4e] leading-relaxed mb-5" style={{ fontSize: '1rem' }}>
-                  At True Taste, we believe that every great meal begins with an extraordinary spice.
+                  At Delhi Wally, we believe that every great meal begins with an extraordinary spice.
                   Our collection brings together the five essential spices that form the backbone of
                   Indian cooking — each one sourced, processed and packed with care.
                 </p>
@@ -359,7 +359,7 @@ export default function HomePage() {
                 True Flavors
               </span>
               <span className="text-[#7AA33E]/20 font-lato font-bold uppercase tracking-[0.3em] text-xs flex-shrink-0">
-                True Taste
+                Delhi Wally
               </span>
             </div>
           ))}
@@ -393,7 +393,7 @@ export default function HomePage() {
               </AnimatedSection>
               <AnimatedSection delay={0.14}>
                 <p className="font-lato text-[#7a6b4e] leading-relaxed mb-10" style={{ fontSize: '1rem' }}>
-                  Every True Taste spice is backed by a four-pillar quality promise —
+                  Every Delhi Wally spice is backed by a four-pillar quality promise —
                   printed on every pack and lived in every batch.
                 </p>
               </AnimatedSection>
@@ -464,7 +464,7 @@ export default function HomePage() {
           </AnimatedSection>
           <AnimatedSection delay={0.24} className="flex flex-wrap gap-4 justify-center">
             <Link href="/contact" className="btn-primary">
-              Contact True Taste
+              Contact Delhi Wally
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/products" className="btn-outline">

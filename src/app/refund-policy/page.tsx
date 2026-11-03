@@ -1,17 +1,17 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import RefundPolicyClient from './RefundPolicyClient';
 
 export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy',
   description:
-    'Read True Taste’s Refund, Return, and Cancellation Policy. Learn about cancellation windows, refund eligibility for packaged spices, timelines, and claim procedures.',
+    'Read Delhi Wally’s Refund, Return, and Cancellation Policy. Learn about cancellation windows, refund eligibility for packaged spices, timelines, and claim procedures.',
   openGraph: {
-    title: 'Refund & Cancellation Policy | True Taste',
+    title: 'Refund & Cancellation Policy | Delhi Wally',
     description:
-      'Clear, transparent policy regarding cancellations, returns, and refunds for True Taste pure spices.',
+      'Clear, transparent policy regarding cancellations, returns, and refunds for Delhi Wally pure spices.',
     url: 'https://truetaste.in/refund-policy',
     type: 'website',
-    siteName: 'True Taste',
+    siteName: 'Delhi Wally',
   },
   alternates: {
     canonical: 'https://truetaste.in/refund-policy',

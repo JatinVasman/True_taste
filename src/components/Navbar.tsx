@@ -81,7 +81,7 @@ export default function Navbar() {
             <Link
               href="/#hero"
               className="flex items-center group cursor-pointer"
-              aria-label="True Taste Home — Hero"
+              aria-label="Delhi Wally Home — Hero"
               onClick={(e) => {
                 if (pathname === '/') {
                   e.preventDefault();
@@ -96,8 +96,8 @@ export default function Navbar() {
             >
               <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/true-taste-logo.png"
-                  alt="True Taste Logo"
+                  src="/images/delhi-wally-logo.png"
+                  alt="Delhi Wally Logo"
                   width={58}
                   height={58}
                   className="object-contain"
@@ -105,6 +105,9 @@ export default function Navbar() {
                   unoptimized
                 />
               </div>
+              <span className="font-playfair font-bold text-[#2E5E2E] text-lg sm:text-xl tracking-tight hidden sm:inline-block ml-2">
+                Delhi Wally
+              </span>
             </Link>
 
             {/* Desktop nav links */}
@@ -199,7 +202,7 @@ export default function Navbar() {
               <Link
                 href="/#hero"
                 className="mb-3 block cursor-pointer"
-                aria-label="True Taste Home — Hero"
+                aria-label="Delhi Wally Home — Hero"
                 onClick={(e) => {
                   setMenuOpen(false);
                   if (pathname === '/') {
@@ -214,15 +217,15 @@ export default function Navbar() {
                 }}
               >
                 <Image
-                  src="/images/true-taste-logo.png"
-                  alt="True Taste Logo"
+                  src="/images/delhi-wally-logo.png"
+                  alt="Delhi Wally Logo"
                   width={80}
                   height={80}
                   className="object-contain"
                   unoptimized
                 />
               </Link>
-              <span className="font-playfair font-bold text-[#2E5E2E] text-2xl">True Taste</span>
+              <span className="font-playfair font-bold text-[#2E5E2E] text-2xl">Delhi Wally</span>
               <p className="text-[#7AA33E] text-[0.65rem] tracking-[0.18em] font-lato font-bold uppercase mt-1">
                 Pure Spices · True Flavors
               </p>

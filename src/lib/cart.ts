@@ -1,5 +1,5 @@
 /**
- * Cart store — True Taste
+ * Cart store — Delhi Wally
  *
  * User isolation strategy
  * ───────────────────────

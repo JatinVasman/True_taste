@@ -26,22 +26,22 @@ const lato = Lato({
 export const metadata: Metadata = {
   metadataBase: new URL('https://truetaste.in'),
   title: {
-    default: 'True Taste — Pure Spices, True Flavors',
-    template: '%s | True Taste',
+    default: 'Delhi Wally — Pure Spices, True Flavors',
+    template: '%s | Delhi Wally',
   },
   description:
-    'True Taste brings you premium quality spices, carefully selected and hygienically processed to deliver pure spices and true flavors in every meal.',
-  keywords: ['Indian spices', 'True Taste', 'pure spices', 'Delhi Wally', 'red chilli powder', 'turmeric', 'garam masala', 'premium spices'],
-  authors: [{ name: 'True Taste' }],
-  creator: 'True Taste',
-  publisher: 'True Taste',
+    'Delhi Wally brings you premium quality spices, carefully selected and hygienically processed to deliver pure spices and authentic flavors in every meal.',
+  keywords: ['Indian spices', 'Delhi Wally', 'pure spices', 'True Taste', 'red chilli powder', 'turmeric', 'garam masala', 'premium spices'],
+  authors: [{ name: 'Delhi Wally' }],
+  creator: 'Delhi Wally',
+  publisher: 'Delhi Wally',
   icons: {
     icon: [
-      { url: '/favicon.ico?v=4', sizes: 'any' },
-      { url: '/icon.png?v=4', type: 'image/png' },
+      { url: '/favicon.ico?v=5', sizes: 'any' },
+      { url: '/icon.png?v=5', type: 'image/png' },
     ],
-    apple: '/apple-icon.png?v=4',
-    shortcut: '/favicon.ico?v=4',
+    apple: '/apple-icon.png?v=5',
+    shortcut: '/favicon.ico?v=5',
   },
   robots: {
     index: true,
@@ -51,23 +51,23 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: 'https://truetaste.in',
-    siteName: 'True Taste',
-    title: 'True Taste — Pure Spices, True Flavors',
+    siteName: 'Delhi Wally',
+    title: 'Delhi Wally — Pure Spices, True Flavors',
     description:
-      'Premium quality spices, carefully selected and hygienically processed to deliver pure spices and true flavors in every meal.',
+      'Premium quality spices, carefully selected and hygienically processed to deliver pure spices and authentic flavors in every meal.',
     images: [
       {
         url: '/images/hero-spice.jpg',
         width: 1200,
         height: 630,
-        alt: 'True Taste Premium Indian Spices',
+        alt: 'Delhi Wally Premium Indian Spices',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'True Taste — Pure Spices, True Flavors',
-    description: 'Premium Indian spices, carefully selected for true flavors.',
+    title: 'Delhi Wally — Pure Spices, True Flavors',
+    description: 'Premium Indian spices, carefully selected for authentic flavors.',
     images: ['/images/hero-spice.jpg'],
   },
 };
@@ -84,9 +84,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
-        <link rel="icon" href="/icon.png?v=4" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-icon.png?v=4" />
+        <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
+        <link rel="icon" href="/icon.png?v=5" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png?v=5" />
       </head>
       <body className="bg-[#FFF8EF] antialiased">
         <CartProvider>

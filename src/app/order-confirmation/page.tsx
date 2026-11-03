@@ -4,7 +4,7 @@ import OrderConfirmationClient from './OrderConfirmationClient';
 
 export const metadata: Metadata = {
   title: 'Order Confirmed',
-  description: 'Your True Taste order has been confirmed.',
+  description: 'Your Delhi Wally order has been confirmed.',
   robots: { index: false, follow: false },
 };
 

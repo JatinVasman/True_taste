@@ -95,7 +95,7 @@ export default function ContactClient() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="eyebrow justify-center mb-5">True Taste</div>
+            <div className="eyebrow justify-center mb-5">Delhi Wally</div>
           </motion.div>
           <motion.h1
             className="text-display text-[#2E5E2E] mb-4"

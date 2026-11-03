@@ -1,17 +1,17 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import TermsClient from './TermsClient';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
   description:
-    'Read the official Terms & Conditions for True Taste. Understand user obligations, ordering conditions, intellectual property, pricing, and dispute jurisdiction.',
+    'Read the official Terms & Conditions for Delhi Wally. Understand user obligations, ordering conditions, intellectual property, pricing, and dispute jurisdiction.',
   openGraph: {
-    title: 'Terms & Conditions | True Taste',
+    title: 'Terms & Conditions | Delhi Wally',
     description:
-      'Official terms and conditions for using the True Taste website and ordering our premium Indian spices.',
+      'Official terms and conditions for using the Delhi Wally website and ordering our premium Indian spices.',
     url: 'https://truetaste.in/terms-and-conditions',
     type: 'website',
-    siteName: 'True Taste',
+    siteName: 'Delhi Wally',
   },
   alternates: {
     canonical: 'https://truetaste.in/terms-and-conditions',

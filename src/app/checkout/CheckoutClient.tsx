@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * CheckoutClient — True Taste
+ * CheckoutClient — Delhi Wally
  *
  * Simple cart-to-email checkout:
  * 1. Customer fills in their name, email, phone, and shipping address.
