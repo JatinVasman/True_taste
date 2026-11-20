@@ -103,7 +103,7 @@ export default function TermsClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Please read these Terms & Conditions carefully before using the True Taste website
+            Please read these Terms & Conditions carefully before using the Delhi Wally website
             or purchasing our premium spices. They establish a legally binding agreement.
           </motion.p>
 
@@ -158,7 +158,7 @@ export default function TermsClient() {
             <div>
               <h3 className="font-playfair font-bold text-sm text-[#2E5E2E] mb-1">Brand Integrity</h3>
               <p className="font-lato text-xs text-[#7a6b4e] leading-relaxed">
-                Brand assets, copy, recipes, and packaging designs are proprietary to True Taste.
+                Brand assets, copy, recipes, and packaging designs are proprietary to Delhi Wally.
               </p>
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  These Terms & Conditions (&quot;Terms&quot;) constitute a legally binding agreement between you (&quot;User&quot;, &quot;Customer&quot;, or &quot;You&quot;) and <strong>True Taste</strong> (operating under business name Delhi Wally, situated in New Delhi, India, &quot;We&quot;, &quot;Us&quot;, or &quot;Our&quot;).
+                  These Terms & Conditions (&quot;Terms&quot;) constitute a legally binding agreement between you (&quot;User&quot;, &quot;Customer&quot;, or &quot;You&quot;) and <strong>Delhi Wally</strong> (situated in New Delhi, India, &quot;We&quot;, &quot;Us&quot;, or &quot;Our&quot;).
                 </p>
                 <p>
                   By accessing, browsing, interacting with, or purchasing spices from our website at{' '}
@@ -299,7 +299,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-4">
                 <p>
-                  True Taste is engaged in the manufacturing, processing, packaging, and retail/distribution of pure Indian spices and seasonings. Our primary catalog comprises:
+                  Delhi Wally is engaged in the manufacturing, processing, packaging, and retail/distribution of pure Indian spices and seasonings. Our primary catalog comprises:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
@@ -373,7 +373,7 @@ export default function TermsClient() {
                   Where user profile creation or customer accounts are enabled on truetaste.in, you are solely responsible for maintaining the confidentiality of your account credentials, login passwords, and one-time passwords (OTPs).
                 </p>
                 <p>
-                  You accept responsibility for all activities that occur under your account. True Taste shall not be liable for any losses caused by unauthorized use of your credentials where you failed to maintain their secrecy.
+                  You accept responsibility for all activities that occur under your account. Delhi Wally shall not be liable for any losses caused by unauthorized use of your credentials where you failed to maintain their secrecy.
                 </p>
               </div>
             </article>
@@ -393,11 +393,11 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  All prices displayed on the True Taste platform are quoted in <strong>Indian Rupees (INR)</strong> and are inclusive of applicable Goods and Services Tax (GST), unless expressly stated otherwise at checkout.
+                  All prices displayed on the Delhi Wally platform are quoted in <strong>Indian Rupees (INR)</strong> and are inclusive of applicable Goods and Services Tax (GST), unless expressly stated otherwise at checkout.
                 </p>
                 <ul className="space-y-2 list-disc list-inside">
-                  <li><strong>Price Adjustments:</strong> True Taste reserves the right to revise spice prices, delivery fees, and minimum order values at any time without prior notice, owing to fluctuations in raw commodity markets.</li>
-                  <li><strong>Pricing Inaccuracies:</strong> While we endeavor to ensure typographical accuracy, technical glitches may occasionally display an incorrect price. In such instances, True Taste reserves the right to cancel or rectify orders placed at the incorrect price, issuing an immediate refund for any amount already collected.</li>
+                  <li><strong>Price Adjustments:</strong> Delhi Wally reserves the right to revise spice prices, delivery fees, and minimum order values at any time without prior notice, owing to fluctuations in raw commodity markets.</li>
+                  <li><strong>Pricing Inaccuracies:</strong> While we endeavor to ensure typographical accuracy, technical glitches may occasionally display an incorrect price. In such instances, Delhi Wally reserves the right to cancel or rectify orders placed at the incorrect price, issuing an immediate refund for any amount already collected.</li>
                   <li><strong>Delivery Charges:</strong> Applicable shipping and delivery charges (if any) are displayed prior to order confirmation.</li>
                 </ul>
               </div>
@@ -427,7 +427,7 @@ export default function TermsClient() {
                   <div className="p-2.5 rounded-lg bg-[#FFF8EF] border border-[#7AA33E]/20">Net Banking</div>
                 </div>
                 <p>
-                  By completing a payment, you authorize the payment gateway to debit your chosen instrument. True Taste is not responsible for transaction declines resulting from insufficient funds, expired cards, incorrect OTP entries, or downtime on the user&apos;s issuing bank network.
+                  By completing a payment, you authorize the payment gateway to debit your chosen instrument. Delhi Wally is not responsible for transaction declines resulting from insufficient funds, expired cards, incorrect OTP entries, or downtime on the user&apos;s issuing bank network.
                 </p>
               </div>
             </article>
@@ -470,10 +470,10 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  All content published on truetaste.in — including text, brand names (&quot;True Taste&quot;, &quot;Delhi Wally&quot;), trademarks, logos, spice descriptions, packaging designs, photographs, graphics, audio, digital downloads, and website code — is the exclusive property of True Taste or its licensors and is protected by Indian and international copyright, trademark, and trade dress laws.
+                  All content published on truetaste.in — including text, brand names (&quot;Delhi Wally&quot;), trademarks, logos, spice descriptions, packaging designs, photographs, graphics, audio, digital downloads, and website code — is the exclusive property of Delhi Wally or its licensors and is protected by Indian and international copyright, trademark, and trade dress laws.
                 </p>
                 <p>
-                  You are granted a limited, revocable, non-exclusive license to access the website for personal use. You may not copy, reproduce, republish, sell, distribute, create derivative works from, or reverse-engineer any brand material without express written consent from True Taste.
+                  You are granted a limited, revocable, non-exclusive license to access the website for personal use. You may not copy, reproduce, republish, sell, distribute, create derivative works from, or reverse-engineer any brand material without express written consent from Delhi Wally.
                 </p>
               </div>
             </article>
@@ -497,7 +497,7 @@ export default function TermsClient() {
                   <li>Using scrapers, spiders, robots, or automated tools to extract spice product data, pricing, or locations.</li>
                   <li>Introducing software viruses, trojans, worms, or malicious scripts designed to disrupt server operations.</li>
                   <li>Attempting to bypass authentication mechanisms, probe system vulnerabilities, or breach network security.</li>
-                  <li>Impersonating True Taste personnel, creating fake accounts, or engaging in fraudulent payment transactions.</li>
+                  <li>Impersonating Delhi Wally personnel, creating fake accounts, or engaging in fraudulent payment transactions.</li>
                   <li>Using our communication channels to transmit abusive, defamatory, or unlawful material.</li>
                 </ul>
               </div>
@@ -518,10 +518,10 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  If you submit reviews, testimonials, recipe suggestions, culinary ideas, or comments (&quot;User Content&quot;) to True Taste, you grant us an irrevocable, perpetual, worldwide, royalty-free license to use, display, publish, reproduce, and adapt such content in our marketing and product materials.
+                  If you submit reviews, testimonials, recipe suggestions, culinary ideas, or comments (&quot;User Content&quot;) to Delhi Wally, you grant us an irrevocable, perpetual, worldwide, royalty-free license to use, display, publish, reproduce, and adapt such content in our marketing and product materials.
                 </p>
                 <p>
-                  You warrant that your submissions do not infringe any third-party intellectual property or privacy rights, and do not contain defamatory, profane, or unlawful content. True Taste reserves the right to moderate or remove inappropriate submissions.
+                  You warrant that your submissions do not infringe any third-party intellectual property or privacy rights, and do not contain defamatory, profane, or unlawful content. Delhi Wally reserves the right to moderate or remove inappropriate submissions.
                 </p>
               </div>
             </article>
@@ -541,7 +541,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  The website may link to third-party services, courier tracking sites, or social media pages. True Taste does not control or endorse the content or practices of these external sites and accepts no liability for any loss or harm incurred from visiting them.
+                  The website may link to third-party services, courier tracking sites, or social media pages. Delhi Wally does not control or endorse the content or practices of these external sites and accepts no liability for any loss or harm incurred from visiting them.
                 </p>
               </div>
             </article>
@@ -561,7 +561,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  To the maximum extent permitted by applicable Indian law, True Taste, its proprietors, partners, employees, and suppliers shall not be liable for any indirect, incidental, punitive, special, or consequential damages arising out of:
+                  To the maximum extent permitted by applicable Indian law, Delhi Wally, its proprietors, partners, employees, and suppliers shall not be liable for any indirect, incidental, punitive, special, or consequential damages arising out of:
                 </p>
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>The use or inability to use this website or order services.</li>
@@ -569,7 +569,7 @@ export default function TermsClient() {
                   <li>Any unauthorized access to servers or communications beyond our reasonable security measures.</li>
                 </ul>
                 <div className="p-3.5 bg-[#FFF8EF] rounded-xl border border-[#7AA33E]/25 text-xs text-[#2E5E2E] font-semibold">
-                  In all events, the maximum cumulative liability of True Taste for any claims related to a purchase shall not exceed the actual purchase price paid by the customer for the specific product giving rise to the claim.
+                  In all events, the maximum cumulative liability of Delhi Wally for any claims related to a purchase shall not exceed the actual purchase price paid by the customer for the specific product giving rise to the claim.
                 </div>
               </div>
             </article>
@@ -592,7 +592,7 @@ export default function TermsClient() {
                   Except as expressly provided herein or required under Indian food safety regulations, this website, our spices, and all related content are provided on an &quot;as is&quot; and &quot;as available&quot; basis.
                 </p>
                 <p>
-                  True Taste makes no representations or warranties of any kind, express or implied, regarding website uptime, error-free operation, or that server communications are free of defects. Customers are advised to store spices in cool, dry, airtight containers upon receipt as instructed on the packaging.
+                  Delhi Wally makes no representations or warranties of any kind, express or implied, regarding website uptime, error-free operation, or that server communications are free of defects. Customers are advised to store spices in cool, dry, airtight containers upon receipt as instructed on the packaging.
                 </p>
               </div>
             </article>
@@ -612,7 +612,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  You agree to defend, indemnify, and hold harmless True Taste, Delhi Wally, its founders, affiliates, employees, and agents from and against any claims, liabilities, damages, losses, and legal costs arising from:
+                  You agree to defend, indemnify, and hold harmless Delhi Wally, its founders, affiliates, employees, and agents from and against any claims, liabilities, damages, losses, and legal costs arising from:
                 </p>
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>Your breach of any provision of these Terms & Conditions.</li>
@@ -637,7 +637,7 @@ export default function TermsClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  True Taste reserves the right, in its sole discretion and without prior notice, to suspend or terminate your access to the website or cancel pending unfulfilled orders if we reasonably suspect:
+                  Delhi Wally reserves the right, in its sole discretion and without prior notice, to suspend or terminate your access to the website or cancel pending unfulfilled orders if we reasonably suspect:
                 </p>
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>A breach of these Terms or related policies.</li>
@@ -743,7 +743,7 @@ export default function TermsClient() {
                     <div>
                       <span className="text-xs uppercase tracking-wider text-[#7a6b4e] block font-bold">Registered Office</span>
                       <address className="not-italic text-sm text-[#2E5E2E]">
-                        <strong>True Taste (Delhi Wally)</strong><br />
+                        <strong>Delhi Wally</strong><br />
                         E-429 New Ashok Nagar, Delhi – 110096, India<br />
                         <span className="text-xs text-[#7a6b4e]">FSSAI Lic. No. 23326003003695</span>
                       </address>

@@ -77,7 +77,7 @@ export default function LocationsClient({ cities, states }: LocationsClientProps
           </h1>
 
           <p className="font-lato text-[#7a6b4e] text-base md:text-lg max-w-3xl leading-relaxed mb-10">
-            Explore True Taste&apos;s location directory spanning over {cities.length} Indian cities across Tier 1,
+            Explore Delhi Wally&apos;s location directory spanning over {cities.length} Indian cities across Tier 1,
             Tier 2, and Tier 3. From vibrant metro kitchens to historic culinary hubs, discover how our 5 pure,
             stone-ground spices elevate every authentic regional dish.
           </p>

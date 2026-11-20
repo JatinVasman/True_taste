@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -96,7 +96,7 @@ export default function PrivacyPolicyClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            At True Taste, we value your trust. This Privacy Policy details how we handle, collect,
+            At Delhi Wally, we value your trust. This Privacy Policy details how we handle, collect,
             use, and protect your personal information with clarity and care.
           </motion.p>
 
@@ -231,7 +231,7 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  This Privacy Policy applies to <strong>True Taste</strong> (operating under business name Delhi Wally, based at New Delhi, India) and governs the collection, use, retention, disclosure, and protection of information obtained through our official website located at{' '}
+                  This Privacy Policy applies to <strong>Delhi Wally</strong> (based at New Delhi, India) and governs the collection, use, retention, disclosure, and protection of information obtained through our official website located at{' '}
                   <Link href="/" className="text-[#2E5E2E] font-medium underline underline-offset-2">
                     https://truetaste.in
                   </Link>
@@ -393,7 +393,7 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-4">
                 <p>
-                  True Taste offers seamless online payments through licensed third-party payment aggregator gateways.
+                  Delhi Wally offers seamless online payments through licensed third-party payment aggregator gateways.
                 </p>
 
                 <div className="p-4 rounded-xl bg-[#7AA33E]/10 border-l-4 border-[#2E5E2E]">
@@ -401,12 +401,12 @@ export default function PrivacyPolicyClient() {
                     Strict Cardholder & Banking Data Protection
                   </h4>
                   <p className="text-xs text-[#5A4A3A] leading-relaxed">
-                    True Taste does <strong>NOT</strong> collect, view, process, or store sensitive financial credentials — including Credit/Debit card numbers, CVV codes, Expiry dates, Net Banking login passwords, or UPI PINs. All financial transactions take place inside the encrypted, compliant infrastructure of authorized Indian payment gateways.
+                    Delhi Wally does <strong>NOT</strong> collect, view, process, or store sensitive financial credentials — including Credit/Debit card numbers, CVV codes, Expiry dates, Net Banking login passwords, or UPI PINs. All financial transactions take place inside the encrypted, compliant infrastructure of authorized Indian payment gateways.
                   </p>
                 </div>
 
                 <p>
-                  True Taste only receives non-sensitive transaction confirmation metadata, consisting of:
+                  Delhi Wally only receives non-sensitive transaction confirmation metadata, consisting of:
                 </p>
                 <ul className="text-xs sm:text-sm list-disc list-inside space-y-1 text-[#5A4A3A]">
                   <li>Payment status (e.g., Success, Pending, Failed)</li>
@@ -491,16 +491,16 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  True Taste treats your personal details with the utmost respect. We share data solely under the following limited circumstances:
+                  Delhi Wally treats your personal details with the utmost respect. We share data solely under the following limited circumstances:
                 </p>
                 <ul className="space-y-2 list-disc list-inside text-sm">
                   <li><strong>Logistics & Courier Partners:</strong> We share your recipient name, delivery address, and phone number with third-party courier and postal companies exclusively to deliver spice consignments to your address.</li>
                   <li><strong>Payment Processors:</strong> We communicate transaction values and identifiers to accredited payment gateway partners for billing authorization.</li>
                   <li><strong>Compliance with Legal Obligations:</strong> We may disclose information if required to do so by a valid court order, governmental notice, regulatory directive, or under Indian statutory provisions.</li>
-                  <li><strong>Protection of Rights:</strong> Where necessary to investigate fraud, enforce our Terms & Conditions, or protect the safety and property of True Taste, our customers, or the public.</li>
+                  <li><strong>Protection of Rights:</strong> Where necessary to investigate fraud, enforce our Terms & Conditions, or protect the safety and property of Delhi Wally, our customers, or the public.</li>
                 </ul>
                 <div className="p-3.5 bg-[#FFF8EF] rounded-xl border border-[#7AA33E]/20 text-xs font-semibold text-[#2E5E2E]">
-                  True Taste never sells, rents, monetizes, or distributes your contact details to third-party telemarketers or external advertising networks.
+                  Delhi Wally never sells, rents, monetizes, or distributes your contact details to third-party telemarketers or external advertising networks.
                 </div>
               </div>
             </article>
@@ -553,7 +553,7 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  Our website may contain hyperlinks to external sites, delivery tracking portals, or payment services operated by independent entities. Once you leave our domain, True Taste is not responsible for the privacy policies, data collection procedures, or content of those external sites. We encourage you to review their respective privacy notices.
+                  Our website may contain hyperlinks to external sites, delivery tracking portals, or payment services operated by independent entities. Once you leave our domain, Delhi Wally is not responsible for the privacy policies, data collection procedures, or content of those external sites. We encourage you to review their respective privacy notices.
                 </p>
               </div>
             </article>
@@ -606,7 +606,7 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  True Taste manufactures and retails culinary spices intended for general household and commercial use. Our website is designed for individuals of legal age (at least 18 years of age or accessing under the supervision of a parent/guardian).
+                  Delhi Wally manufactures and retails culinary spices intended for general household and commercial use. Our website is designed for individuals of legal age (at least 18 years of age or accessing under the supervision of a parent/guardian).
                 </p>
                 <p>
                   We do not knowingly solicit or collect personal information from minors under the age of 18. If a parent or guardian discovers that a child has provided us with personal information without consent, please contact us immediately, and we will take prompt steps to purge that record from our systems.
@@ -629,7 +629,7 @@ export default function PrivacyPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  True Taste reserves the right to review and amend this Privacy Policy periodically to reflect changes in our spice operations, technology, or relevant legal enactments.
+                  Delhi Wally reserves the right to review and amend this Privacy Policy periodically to reflect changes in our spice operations, technology, or relevant legal enactments.
                 </p>
                 <p>
                   Whenever changes are made, the revised policy will be posted on this page with an updated &quot;Last Updated&quot; date at the top. We encourage visitors and patrons to review this page periodically to remain informed about how we protect their privacy.
@@ -684,7 +684,7 @@ export default function PrivacyPolicyClient() {
                     <div>
                       <span className="text-xs uppercase tracking-wider text-[#7a6b4e] block font-bold">Postal Address</span>
                       <address className="not-italic text-sm text-[#2E5E2E]">
-                        <strong>True Taste (Delhi Wally)</strong><br />
+                        <strong>Delhi Wally</strong><br />
                         E-429 New Ashok Nagar, Delhi – 110096, India<br />
                         <span className="text-xs text-[#7a6b4e]">FSSAI Lic. No. 23326003003695</span>
                       </address>

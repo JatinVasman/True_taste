@@ -1,5 +1,5 @@
 /**
- * Email service — True Taste
+ * Email service — Delhi Wally
  *
  * Server-side ONLY. Never import this in client components.
  *
@@ -30,7 +30,7 @@ function getResend(): Resend {
 // ── Constants ──────────────────────────────────────────────────────────────
 
 const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? 'True Taste <noreply@truetaste.in>';
+  process.env.RESEND_FROM_EMAIL ?? 'Delhi Wally <noreply@truetaste.in>';
 const SUPPORT_EMAIL = 'delhiwally@gmial.com';
 const SITE_URL = 'https://truetaste.in';
 
@@ -125,7 +125,7 @@ function buildOrderConfirmationHtml(data: OrderConfirmationData): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Confirmation — True Taste</title>
+  <title>Order Confirmation — Delhi Wally</title>
 </head>
 <body style="margin:0;padding:0;background:#FFF8EF;font-family:Arial,Helvetica,sans-serif;">
 
@@ -140,7 +140,7 @@ function buildOrderConfirmationHtml(data: OrderConfirmationData): string {
           <tr>
             <td style="background:#2E5E2E;border-radius:16px 16px 0 0;padding:32px 40px;text-align:center;">
               <p style="margin:0 0 6px 0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F2E6C9;opacity:0.7;">Pure Spices, True Love</p>
-              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:700;color:#F2E6C9;">True Taste</h1>
+              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:700;color:#F2E6C9;">Delhi Wally</h1>
             </td>
           </tr>
 
@@ -237,7 +237,7 @@ function buildOrderConfirmationHtml(data: OrderConfirmationData): string {
                 <a href="mailto:${SUPPORT_EMAIL}" style="color:#7AA33E;text-decoration:none;">${SUPPORT_EMAIL}</a>
               </p>
               <p style="margin:0;font-size:12px;color:#b8a990;">
-                © ${new Date().getFullYear()} True Taste — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a>
+                © ${new Date().getFullYear()} Delhi Wally — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a>
               </p>
               <p style="margin:6px 0 0 0;font-size:11px;color:#b8a990;">FSSAI Lic. No. 23326003003695</p>
             </td>
@@ -273,7 +273,7 @@ function buildOrderConfirmationText(data: OrderConfirmationData): string {
     .join('\n');
 
   return `
-TRUE TASTE — Order Confirmation
+DELHI WALLY — Order Confirmation
 ================================
 
 Hello ${customerName},
@@ -303,7 +303,7 @@ QUESTIONS?
 Email  : ${SUPPORT_EMAIL}
 Website: ${SITE_URL}
 
-© ${new Date().getFullYear()} True Taste — FSSAI Lic. No. 23326003003695
+© ${new Date().getFullYear()} Delhi Wally — FSSAI Lic. No. 23326003003695
 `.trim();
 }
 
@@ -314,13 +314,13 @@ function buildContactNotificationHtml(data: ContactNotificationData): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><title>New Contact Enquiry — True Taste</title></head>
+<head><meta charset="UTF-8"/><title>New Contact Enquiry — Delhi Wally</title></head>
 <body style="margin:0;padding:24px;background:#f8f5f0;font-family:Arial,sans-serif;">
   <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;border:1px solid #e0d4c0;max-width:600px;margin:0 auto;">
     <tr>
       <td style="background:#2E5E2E;padding:24px 32px;border-radius:12px 12px 0 0;">
         <h2 style="margin:0;color:#F2E6C9;font-family:Georgia,serif;font-size:22px;">New Contact Enquiry</h2>
-        <p style="margin:4px 0 0 0;color:#F2E6C9;opacity:0.7;font-size:13px;">True Taste Website</p>
+        <p style="margin:4px 0 0 0;color:#F2E6C9;opacity:0.7;font-size:13px;">Delhi Wally Website</p>
       </td>
     </tr>
     <tr>
@@ -368,7 +368,7 @@ function buildContactNotificationHtml(data: ContactNotificationData): string {
     </tr>
     <tr>
       <td style="padding:16px 32px;border-top:1px solid #e8dcc8;text-align:center;">
-        <p style="margin:0;font-size:12px;color:#b8a990;">True Taste — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a></p>
+        <p style="margin:0;font-size:12px;color:#b8a990;">Delhi Wally — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a></p>
       </td>
     </tr>
   </table>
@@ -379,7 +379,7 @@ function buildContactNotificationHtml(data: ContactNotificationData): string {
 function buildContactNotificationText(data: ContactNotificationData): string {
   const { customerName, customerEmail, phone, message, submittedAt } = data;
   return `
-New Contact Enquiry — True Taste
+New Contact Enquiry — Delhi Wally
 ==================================
 Name     : ${customerName}
 Email    : ${customerEmail}
@@ -409,7 +409,7 @@ export async function sendOrderConfirmation(
       from: FROM_EMAIL,
       to: [data.customerEmail],
       replyTo: SUPPORT_EMAIL,
-      subject: `Order Confirmed — True Taste #${data.orderId.toUpperCase().slice(-8)}`,
+      subject: `Order Confirmed — Delhi Wally #${data.orderId.toUpperCase().slice(-8)}`,
       html: buildOrderConfirmationHtml(data),
       text: buildOrderConfirmationText(data),
     });
@@ -440,7 +440,7 @@ export async function sendContactNotification(
       from: FROM_EMAIL,
       to: [SUPPORT_EMAIL],
       replyTo: data.customerEmail,
-      subject: `New Enquiry from ${data.customerName} — True Taste`,
+      subject: `New Enquiry from ${data.customerName} — Delhi Wally`,
       html: buildContactNotificationHtml(data),
       text: buildContactNotificationText(data),
     });
@@ -499,7 +499,7 @@ function buildCartOrderHtml(data: CartOrderData): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Received — True Taste</title>
+  <title>Order Received — Delhi Wally</title>
 </head>
 <body style="margin:0;padding:0;background:#FFF8EF;font-family:Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#FFF8EF;padding:32px 16px;">
@@ -511,7 +511,7 @@ function buildCartOrderHtml(data: CartOrderData): string {
           <tr>
             <td style="background:#2E5E2E;border-radius:16px 16px 0 0;padding:32px 40px;text-align:center;">
               <p style="margin:0 0 6px 0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F2E6C9;opacity:0.7;">Pure Spices, True Love</p>
-              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:700;color:#F2E6C9;">True Taste</h1>
+              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:700;color:#F2E6C9;">Delhi Wally</h1>
             </td>
           </tr>
 
@@ -605,7 +605,7 @@ function buildCartOrderHtml(data: CartOrderData): string {
                 <a href="mailto:${SUPPORT_EMAIL}" style="color:#7AA33E;text-decoration:none;">${SUPPORT_EMAIL}</a>
               </p>
               <p style="margin:0;font-size:12px;color:#b8a990;">
-                © ${new Date().getFullYear()} True Taste — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a>
+                © ${new Date().getFullYear()} Delhi Wally — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a>
               </p>
               <p style="margin:6px 0 0 0;font-size:11px;color:#b8a990;">FSSAI Lic. No. 23326003003695</p>
             </td>
@@ -636,13 +636,13 @@ function buildCartOrderOwnerHtml(data: CartOrderData): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><title>New Order — True Taste</title></head>
+<head><meta charset="UTF-8"/><title>New Order — Delhi Wally</title></head>
 <body style="margin:0;padding:24px;background:#f8f5f0;font-family:Arial,sans-serif;">
   <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;border:1px solid #e0d4c0;max-width:600px;margin:0 auto;">
     <tr>
       <td style="background:#2E5E2E;padding:24px 32px;border-radius:12px 12px 0 0;">
         <h2 style="margin:0;color:#F2E6C9;font-family:Georgia,serif;font-size:22px;">🛒 New Order Received</h2>
-        <p style="margin:4px 0 0 0;color:#F2E6C9;opacity:0.7;font-size:13px;">True Taste — ${formatDate(orderDate)} · Ref: ${orderId}</p>
+        <p style="margin:4px 0 0 0;color:#F2E6C9;opacity:0.7;font-size:13px;">Delhi Wally — ${formatDate(orderDate)} · Ref: ${orderId}</p>
       </td>
     </tr>
     <tr>
@@ -692,7 +692,7 @@ function buildCartOrderOwnerHtml(data: CartOrderData): string {
     </tr>
     <tr>
       <td style="padding:16px 32px;border-top:1px solid #e8dcc8;text-align:center;">
-        <p style="margin:0;font-size:12px;color:#b8a990;">True Taste — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a></p>
+        <p style="margin:0;font-size:12px;color:#b8a990;">Delhi Wally — <a href="${SITE_URL}" style="color:#b8a990;">${SITE_URL}</a></p>
       </td>
     </tr>
   </table>
@@ -704,7 +704,7 @@ function buildCartOrderText(data: CartOrderData): string {
   const { orderId, customerName, phone, shippingAddress, items, subtotal, shippingCharge, totalAmount, orderDate } = data;
   const itemLines = items.map((i) => `  • ${i.name} (${i.size}) × ${i.quantity}  —  ₹${i.unitPrice * i.quantity}`).join('\n');
   return `
-TRUE TASTE — Order Confirmation
+DELHI WALLY — Order Confirmation
 ================================
 
 Hello ${customerName},
@@ -736,7 +736,7 @@ QUESTIONS?
 Email  : ${SUPPORT_EMAIL}
 Website: ${SITE_URL}
 
-© ${new Date().getFullYear()} True Taste — FSSAI Lic. No. 23326003003695
+© ${new Date().getFullYear()} Delhi Wally — FSSAI Lic. No. 23326003003695
 `.trim();
 }
 
@@ -753,7 +753,7 @@ export async function sendCartOrder(data: CartOrderData): Promise<EmailResult> {
       from: FROM_EMAIL,
       to: [SUPPORT_EMAIL],
       replyTo: data.customerEmail,
-      subject: `New Order ${data.orderId} from ${data.customerName} — True Taste`,
+      subject: `New Order ${data.orderId} from ${data.customerName} — Delhi Wally`,
       html: buildCartOrderOwnerHtml(data),
       text: buildCartOrderText(data),
     });
@@ -768,7 +768,7 @@ export async function sendCartOrder(data: CartOrderData): Promise<EmailResult> {
       from: FROM_EMAIL,
       to: [data.customerEmail],
       replyTo: SUPPORT_EMAIL,
-      subject: `Order Received — True Taste (${data.orderId})`,
+      subject: `Order Received — Delhi Wally (${data.orderId})`,
       html: buildCartOrderHtml(data),
       text: buildCartOrderText(data),
     });

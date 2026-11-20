@@ -17,14 +17,14 @@ const qualityMarks = [
     title: '100% Natural',
     description:
       'Our spices contain absolutely no artificial flavours, colours or preservatives. What you taste is purely nature.',
-    packagingText: 'As stated on every True Taste pack.',
+    packagingText: 'As stated on every Delhi Wally pack.',
   },
   {
     icon: Sparkles,
     title: 'Rich in Aroma',
     description:
       'Whole spices at their peak are carefully ground to preserve the natural essential oils responsible for each spice\'s signature aroma.',
-    packagingText: 'Rich in Aroma — a True Taste promise.',
+    packagingText: 'Rich in Aroma — a Delhi Wally promise.',
   },
   {
     icon: Shield,
@@ -45,13 +45,13 @@ const qualityMarks = [
     title: 'Naturally Sourced',
     description:
       'We source whole spices from their natural growing environments, ensuring the authentic character of each ingredient.',
-    packagingText: 'Naturally Sourced — on every True Taste pack.',
+    packagingText: 'Naturally Sourced — on every Delhi Wally pack.',
   },
   {
     icon: Recycle,
     title: 'Recyclable Packaging',
     description:
-      'True Taste is committed to responsible packaging. Our packs are designed to be recyclable — good for your kitchen and the planet.',
+      'Delhi Wally is committed to responsible packaging. Our packs are designed to be recyclable — good for your kitchen and the planet.',
     packagingText: 'Recyclable Packaging — part of our commitment.',
   },
 ];
@@ -111,7 +111,7 @@ export default function QualityClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Every True Taste spice is backed by a four-pillar quality promise printed on every pack.
+            Every Delhi Wally spice is backed by a four-pillar quality promise printed on every pack.
           </motion.p>
         </div>
       </section>
@@ -172,7 +172,7 @@ export default function QualityClient() {
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection className="text-center mb-10">
             <h2 className="font-playfair font-bold text-[#F2E6C9] text-2xl">
-              On Every True Taste Pack
+              On Every Delhi Wally Pack
             </h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -215,7 +215,7 @@ export default function QualityClient() {
               </AnimatedSection>
               <AnimatedSection delay={0.2}>
                 <p className="font-lato text-[#7a6b4e] text-base leading-relaxed mb-5">
-                  Storage instructions are simple and designed to help you keep every True Taste spice
+                  Storage instructions are simple and designed to help you keep every Delhi Wally spice
                   at its absolute best: store in a cool, dry place away from direct sunlight, and keep
                   the container tightly closed after every use.
                 </p>
@@ -290,7 +290,7 @@ export default function QualityClient() {
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <p className="font-lato text-[#7a6b4e] text-base leading-relaxed mb-9 max-w-md mx-auto">
-              Discover the True Taste spice collection and bring pure, natural flavors to your cooking.
+              Discover the Delhi Wally spice collection and bring pure, natural flavors to your cooking.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2} className="flex flex-wrap gap-4 justify-center">

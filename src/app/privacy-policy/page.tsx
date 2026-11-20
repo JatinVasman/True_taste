@@ -1,17 +1,17 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import PrivacyPolicyClient from './PrivacyPolicyClient';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'Read the Privacy Policy of True Taste. Learn how we collect, use, safeguard, and retain your personal data when you visit truetaste.in or purchase our spices.',
+    'Read the Privacy Policy of Delhi Wally. Learn how we collect, use, safeguard, and retain your personal data when you visit truetaste.in or purchase our spices.',
   openGraph: {
-    title: 'Privacy Policy | True Taste',
+    title: 'Privacy Policy | Delhi Wally',
     description:
-      'Learn how True Taste collects, uses, and protects your personal and transaction information when browsing our pure spice collection.',
+      'Learn how Delhi Wally collects, uses, and protects your personal and transaction information when browsing our pure spice collection.',
     url: 'https://truetaste.in/privacy-policy',
     type: 'website',
-    siteName: 'True Taste',
+    siteName: 'Delhi Wally',
   },
   alternates: {
     canonical: 'https://truetaste.in/privacy-policy',

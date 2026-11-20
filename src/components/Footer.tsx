@@ -46,11 +46,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 xl:gap-8 mb-14">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5 group" aria-label="True Taste Home">
+            <Link href="/" className="flex items-center gap-2.5 mb-5 group" aria-label="Delhi Wally Home">
               <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/images/true-taste-logo.png"
-                  alt="True Taste Logo"
+                  src="/images/delhi-wally-logo.png"
+                  alt="Delhi Wally Logo"
                   width={42}
                   height={42}
                   className="object-contain"
@@ -58,7 +58,7 @@ export default function Footer() {
                 />
               </div>
               <span className="font-playfair font-bold text-[#F2E6C9] text-xl leading-tight">
-                True Taste
+                Delhi Wally
               </span>
             </Link>
 
@@ -227,7 +227,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[#F2E6C9]/50 font-lato text-xs">
           <p>
-            © {new Date().getFullYear()} True Taste. All rights reserved.
+            © {new Date().getFullYear()} Delhi Wally. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
             <Link href="/privacy-policy" className="hover:text-[#F2E6C9] transition-colors">

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Toast notification system — True Taste
+ * Toast notification system — Delhi Wally
  *
  * Lightweight, no extra dependency. Driven by a simple Zustand store.
  * Renders at the top-level via <ToastContainer /> mounted in layout.

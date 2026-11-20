@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -236,7 +236,7 @@ export default function RefundPolicyClient() {
                   <Link href="/" className="text-[#2E5E2E] font-medium underline underline-offset-2">
                     https://truetaste.in
                   </Link>{' '}
-                  for packaged pure Indian spices manufactured and distributed by <strong>True Taste</strong> (Delhi Wally), New Delhi, India.
+                  for packaged pure Indian spices manufactured and distributed by <strong>Delhi Wally</strong>, New Delhi, India.
                 </p>
                 <p>
                   As an FSSAI-registered food manufacturer (Lic. No. 23326003003695), our packaging follows hygienic and food safety standards to ensure spices reach your kitchen with pure aroma and sealed freshness. Because spices are consumable food products, specific statutory hygiene considerations govern return eligibility.
@@ -494,7 +494,7 @@ export default function RefundPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  In multi-item orders where only one product is affected (for example, if an order contained 5 spice packs and only one pack arrived damaged or was out of stock), True Taste will process a pro-rata partial refund or replacement specifically for the affected item.
+                  In multi-item orders where only one product is affected (for example, if an order contained 5 spice packs and only one pack arrived damaged or was out of stock), Delhi Wally will process a pro-rata partial refund or replacement specifically for the affected item.
                 </p>
                 <p>
                   The remainder of the undamaged order remains non-refundable once delivered intact.
@@ -517,7 +517,7 @@ export default function RefundPolicyClient() {
               </div>
               <div className="text-[#5A4A3A] text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  Commercial, wholesale, or custom-packaged spice contracts are governed by specific commercial Purchase Orders (POs) agreed upon in writing between True Taste and the client.
+                  Commercial, wholesale, or custom-packaged spice contracts are governed by specific commercial Purchase Orders (POs) agreed upon in writing between Delhi Wally and the client.
                 </p>
                 <p>
                   Standard retail consumer cancellation terms do not automatically apply to bespoke bulk ground spice orders once milling, batch blending, or customized packaging has commenced.
@@ -636,7 +636,7 @@ export default function RefundPolicyClient() {
                     <div>
                       <span className="text-xs uppercase tracking-wider text-[#7a6b4e] block font-bold">Facility & Office</span>
                       <address className="not-italic text-sm text-[#2E5E2E]">
-                        <strong>True Taste (Delhi Wally)</strong><br />
+                        <strong>Delhi Wally</strong><br />
                         E-429 New Ashok Nagar, Delhi – 110096, India<br />
                         <span className="text-xs text-[#7a6b4e]">FSSAI Lic. No. 23326003003695</span>
                       </address>

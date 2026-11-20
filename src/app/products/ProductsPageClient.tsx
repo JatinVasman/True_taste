@@ -50,7 +50,7 @@ export default function ProductsPageClient() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>
-            <div className="eyebrow justify-center mb-5">True Taste</div>
+            <div className="eyebrow justify-center mb-5">Delhi Wally</div>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <h1 className="text-display text-[#2E5E2E] mb-4" id="products-page-heading">
@@ -182,7 +182,7 @@ export default function ProductsPageClient() {
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <Link href="/contact" className="inline-flex items-center gap-2 btn-primary bg-[#F2E6C9] text-[#2E5E2E] hover:bg-[#FFF8EF]">
-              Contact True Taste
+              Contact Delhi Wally
               <ArrowRight className="w-4 h-4" />
             </Link>
           </AnimatedSection>

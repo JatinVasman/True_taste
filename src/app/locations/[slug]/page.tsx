@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: '/images/hero-spice.jpg',
           width: 1200,
           height: 630,
-          alt: `True Taste Premium Indian Spices in ${city.name}`,
+          alt: `Delhi Wally Premium Indian Spices in ${city.name}`,
         },
       ],
     },
@@ -104,11 +104,11 @@ export default async function LocationCityPage({ params }: Props) {
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'True Taste',
+    name: 'Delhi Wally',
     url: 'https://truetaste.in',
     logo: 'https://truetaste.in/images/hero-spice.jpg',
     description:
-      'True Taste brings you the finest quality Indian spices, carefully selected and hygienically processed to deliver pure spices and true flavors.',
+      'Delhi Wally brings you the finest quality Indian spices, carefully selected and hygienically processed to deliver pure spices and authentic flavors.',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+91-8810303231',
@@ -141,7 +141,7 @@ export default async function LocationCityPage({ params }: Props) {
   const productListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `True Taste Spices for ${city.name}`,
+    name: `Delhi Wally Spices for ${city.name}`,
     description: `Core authentic spice collection available for households in ${city.name}, ${city.state}.`,
     itemListElement: products.map((product, index) => ({
       '@type': 'ListItem',
@@ -153,7 +153,7 @@ export default async function LocationCityPage({ params }: Props) {
         image: `https://truetaste.in${product.heroImage}`,
         brand: {
           '@type': 'Brand',
-          name: 'True Taste',
+          name: 'Delhi Wally',
         },
         offers: {
           '@type': 'AggregateOffer',
@@ -226,7 +226,7 @@ export default async function LocationCityPage({ params }: Props) {
 
           <p className="font-lato text-[#7a6b4e] text-base md:text-lg max-w-3xl leading-relaxed mb-8">
             Experience the authentic aroma, rich warmth, and natural colors of 100% pure, unadulterated spices.
-            Crafted for discerning home cooks in {city.name}, True Taste brings farm-fresh, stone-ground Red Chilli,
+            Crafted for discerning home cooks in {city.name}, Delhi Wally brings farm-fresh, stone-ground Red Chilli,
             Turmeric, Dhaniya, Jeera, and artisanal Garam Masala straight to your table.
           </p>
 
@@ -299,7 +299,7 @@ export default async function LocationCityPage({ params }: Props) {
       <section className="max-w-6xl mx-auto px-6 md:px-10 py-12">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-[#7AA33E] font-lato text-xs font-bold uppercase tracking-[0.22em] block mb-2">
-            The True Taste Collection
+            The Delhi Wally Collection
           </span>
           <h2 className="font-playfair font-bold text-[#2E5E2E] text-3xl sm:text-4xl leading-tight mb-3">
             Explore Our Spices for {city.name} Kitchens
@@ -398,7 +398,7 @@ export default async function LocationCityPage({ params }: Props) {
               </h3>
               <p className="font-lato text-xs text-[#F2E6C9]/75 leading-relaxed mb-6">
                 Stock your kitchen with all 5 essential Indian spices. From morning tempering to slow-cooked evening
-                curries, experience True Taste purity in every pinch.
+                curries, experience Delhi Wally purity in every pinch.
               </p>
             </div>
 
@@ -413,14 +413,14 @@ export default async function LocationCityPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Why Choose True Taste in City */}
+      {/* Why Choose Delhi Wally in City */}
       <section className="max-w-5xl mx-auto px-6 md:px-10 py-12">
         <div className="text-center max-w-xl mx-auto mb-10">
           <span className="text-[#7AA33E] font-lato text-xs font-bold uppercase tracking-[0.2em] block mb-2">
-            The True Taste Difference
+            The Delhi Wally Difference
           </span>
           <h2 className="font-playfair font-bold text-[#2E5E2E] text-2xl sm:text-3xl">
-            Why Discerning Kitchens in {city.name} Choose True Taste
+            Why Discerning Kitchens in {city.name} Choose Delhi Wally
           </h2>
         </div>
 
@@ -536,7 +536,7 @@ export default async function LocationCityPage({ params }: Props) {
               <Leaf className="w-6 h-6 text-[#2E5E2E]" />
             </div>
             <h2 className="font-playfair font-bold text-2xl sm:text-4xl text-[#F2E6C9] mb-4">
-              Bring True Taste to Your Kitchen in {city.name}
+              Bring Delhi Wally to Your Kitchen in {city.name}
             </h2>
             <p className="font-lato text-xs sm:text-sm text-[#F2E6C9]/80 leading-relaxed mb-8">
               Elevate your home cooking with our 100% natural, lab-tested spices. Stone-ground for pure flavor and true

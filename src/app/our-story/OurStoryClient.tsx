@@ -20,7 +20,7 @@ const storyChapters = [
   {
     number: '02',
     title: 'The Selection',
-    body: 'Each True Taste spice is carefully selected for quality, aroma and purity. We work with whole spices and ground them fresh to preserve the essential oils that give every pinch its character.',
+    body: 'Each Delhi Wally spice is carefully selected for quality, aroma and purity. We work with whole spices and ground them fresh to preserve the essential oils that give every pinch its character.',
   },
   {
     number: '03',
@@ -78,7 +78,7 @@ export default function OurStoryClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="eyebrow justify-center mb-5">True Taste</div>
+            <div className="eyebrow justify-center mb-5">Delhi Wally</div>
           </motion.div>
           <motion.h1
             className="text-display text-[#2E5E2E] mb-6"
@@ -98,8 +98,8 @@ export default function OurStoryClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            At True Taste, we bring you the finest quality spices, carefully selected and
-            hygienically processed to deliver pure spices and true flavors in every meal.
+            At Delhi Wally, we bring you the finest quality spices, carefully selected and
+            hygienically processed to deliver pure spices and authentic flavors in every meal.
           </motion.p>
         </div>
       </section>
@@ -123,7 +123,7 @@ export default function OurStoryClient() {
                 <div className="rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5' }}>
                   <Image
                     src="/images/hero-spice.jpg"
-                    alt="Three wooden bowls of vibrant Indian spices — the True Taste collection"
+                    alt="Three wooden bowls of vibrant Indian spices — the Delhi Wally collection"
                     width={700}
                     height={875}
                     className="w-full h-full object-cover"
@@ -151,7 +151,7 @@ export default function OurStoryClient() {
 
               <AnimatedSection delay={0.3}>
                 <p className="font-lato text-[#7a6b4e] text-base leading-relaxed mb-8">
-                  True Taste was born from a simple belief: that pure, naturally sourced spices —
+                  Delhi Wally was born from a simple belief: that pure, naturally sourced spices —
                   selected with care and processed with hygiene — make every meal extraordinary.
                   We carry that belief into every batch, every pack and every pinch.
                 </p>
@@ -167,7 +167,7 @@ export default function OurStoryClient() {
                 <p className="font-playfair font-bold text-[#2E5E2E] text-xl italic mb-2">
                   &ldquo;Pure Spices, True Flavors.&rdquo;
                 </p>
-                <p className="font-lato text-[#7AA33E] text-xs uppercase tracking-widest">True Taste Brand Promise</p>
+                <p className="font-lato text-[#7AA33E] text-xs uppercase tracking-widest">Delhi Wally Brand Promise</p>
               </AnimatedSection>
             </div>
           </div>
@@ -287,7 +287,7 @@ export default function OurStoryClient() {
               <div className="rounded-3xl overflow-hidden" style={{ aspectRatio: '4/3' }}>
                 <Image
                   src="/images/story-editorial.jpg"
-                  alt="A wooden spice box filled with True Taste spices — coriander, cumin, turmeric, chilli, garam masala"
+                  alt="A wooden spice box filled with Delhi Wally spices — coriander, cumin, turmeric, chilli, garam masala"
                   width={700}
                   height={525}
                   className="w-full h-full object-cover"

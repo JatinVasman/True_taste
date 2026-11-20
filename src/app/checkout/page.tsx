@@ -3,7 +3,7 @@ import CheckoutClient from './CheckoutClient';
 
 export const metadata: Metadata = {
   title: 'Checkout',
-  description: 'Complete your True Taste order securely.',
+  description: 'Complete your Delhi Wally order securely.',
   robots: { index: false, follow: false },
 };
 

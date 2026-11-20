@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * OrderConfirmationClient — True Taste
+ * OrderConfirmationClient — Delhi Wally
  *
  * Displays the order success page after the email-based checkout.
  * The orderId comes from the URL query param set by CheckoutClient.

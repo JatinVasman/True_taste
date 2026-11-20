@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * CartProvider — True Taste
+ * CartProvider — Delhi Wally
  *
  * Provides the active cart store via CartStoreContext.
  * Uses a single persistent guest cart (no user-based isolation needed
