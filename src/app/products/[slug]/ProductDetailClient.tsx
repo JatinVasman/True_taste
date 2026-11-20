@@ -10,6 +10,8 @@ import ProductImageGallery from '@/components/ProductImageGallery';
 import { products, type Product } from '@/lib/products';
 import { useCartStore } from '@/lib/cart';
 import { useCartDrawer } from '@/lib/cartDrawer';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { buildProductWhatsAppMessage, redirectToWhatsApp } from '@/lib/whatsapp';
 
 type Size = '50g' | '100g' | '200g';
 
@@ -75,18 +77,24 @@ export default function ProductDetailClient({ product }: Props) {
     openCart();
   }
 
-  function handleBuyNow() {
-    if (!product.pricing) return;
-    addItem({
-      productId: product.id,
-      slug: product.slug,
+  function handleOrderOnWhatsApp() {
+    if (!product.pricing) {
+      const message = `Hello True Taste! 👋 I would like to enquire about ordering *${product.name}*.\n\nProduct: ${product.name}\nLink: ${typeof window !== 'undefined' ? window.location.href : ''}`;
+      redirectToWhatsApp(message);
+      return;
+    }
+    const message = buildProductWhatsAppMessage({
       name: product.name,
-      image: packImageFor(product, selectedSize),
       size: selectedSize,
-      unitPrice: product.pricing[selectedSize],
       quantity,
+      unitPrice: product.pricing[selectedSize],
+      slug: product.slug,
     });
-    router.push('/checkout');
+    redirectToWhatsApp(message);
+  }
+
+  function handleBuyNow() {
+    handleOrderOnWhatsApp();
   }
 
   const otherProducts = products.filter((p) => p.id !== product.id).slice(0, 3);
@@ -375,40 +383,48 @@ export default function ProductDetailClient({ product }: Props) {
                     <div className="flex flex-col sm:flex-row gap-3">
                       <button
                         type="button"
-                        onClick={handleAddToCart}
-                        id={`add-to-cart-${product.slug}`}
-                        className="btn-primary flex-1 justify-center py-3.5 text-xs sm:text-sm shadow-md"
-                        aria-label={`Add ${quantity} ${product.name} ${selectedSize} to cart`}
+                        onClick={handleOrderOnWhatsApp}
+                        id={`order-whatsapp-${product.slug}`}
+                        className="flex-1 inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-xl font-lato font-bold text-xs sm:text-sm text-white shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                          background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                          boxShadow: '0 4px 18px rgba(37, 211, 102, 0.35)',
+                        }}
+                        aria-label={`Order ${quantity} ${product.name} ${selectedSize} via WhatsApp`}
                       >
-                        <ShoppingCart className="w-4 h-4" />
-                        <span>Add to Cart • ₹{quantity * product.pricing[selectedSize]}</span>
+                        <WhatsAppIcon className="w-5 h-5 fill-white flex-shrink-0" />
+                        <span>Order on WhatsApp • ₹{quantity * product.pricing[selectedSize]}</span>
                       </button>
 
                       <button
                         type="button"
-                        onClick={handleBuyNow}
-                        className="btn-outline flex-1 justify-center py-3.5 text-xs sm:text-sm font-bold"
-                        style={{
-                          background: '#7AA33E',
-                          color: '#FFF8EF',
-                          borderColor: '#7AA33E',
-                          boxShadow: '0 2px 12px rgba(122, 163, 62, 0.25)',
-                        }}
+                        onClick={handleAddToCart}
+                        id={`add-to-cart-${product.slug}`}
+                        className="btn-outline flex-1 justify-center py-3.5 text-xs sm:text-sm font-bold border-[#2E5E2E]/30 text-[#2E5E2E] hover:bg-[#2E5E2E]/5"
+                        aria-label={`Add ${quantity} ${product.name} ${selectedSize} to cart`}
                       >
-                        <span>Buy Now</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Add to Cart</span>
                       </button>
                     </div>
 
                     <p className="font-lato text-[0.7rem] text-[#7a6b4e] flex items-center gap-1.5 pt-1">
-                      <span>✓</span> Pure & fresh • Dispatched in 24 hours • Free delivery over ₹499
+                      <span className="text-[#25D366] font-bold">✓</span> Instant WhatsApp order • Dispatched in 24 hours • Free delivery over ₹499
                     </p>
                   </div>
                 ) : (
-                  <Link href="/contact" className="btn-primary">
-                    Enquire About This Spice
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleOrderOnWhatsApp}
+                    className="inline-flex items-center gap-2.5 py-3.5 px-6 rounded-xl font-lato font-bold text-sm text-white shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                    style={{
+                      background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                      boxShadow: '0 4px 18px rgba(37, 211, 102, 0.35)',
+                    }}
+                  >
+                    <WhatsAppIcon className="w-5 h-5 fill-white" />
+                    <span>Enquire & Order on WhatsApp</span>
+                  </button>
                 )}
               </AnimatedSection>
 
@@ -492,6 +508,15 @@ export default function ProductDetailClient({ product }: Props) {
                   Interested in placing an order or want to know more about this product?
                 </p>
                 <div className="space-y-3">
+                  <a
+                    href="https://wa.me/918810303231"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 text-[#F2E6C9]/90 hover:text-white font-lato text-sm transition-colors"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
+                    WhatsApp: +91 8810303231
+                  </a>
                   <a href="tel:+918810303231" className="flex items-center gap-2.5 text-[#F2E6C9]/80 hover:text-[#F2E6C9] font-lato text-sm transition-colors">
                     <Phone className="w-4 h-4 text-[#7AA33E]" />
                     +91 8810303231

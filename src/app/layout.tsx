@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { ToastContainer } from '@/components/Toast';
 import { CartProvider } from '@/components/CartManager';
 import CartDrawer from '@/components/CartDrawer';
+import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -94,6 +95,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <CartDrawer />
+          <WhatsAppFloatingButton />
           <ToastContainer />
         </CartProvider>
       </body>

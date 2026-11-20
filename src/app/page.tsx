@@ -132,7 +132,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/images/hero-spice.jpg"
-                  alt="Premium Indian spices in wooden bowls — red chilli, turmeric, garam masala — True Taste collection"
+                  alt="Artisanal wooden spice box with vibrant Indian spices and True Taste gold-capped spice jars"
                   fill
                   priority
                   className="object-cover"
@@ -210,7 +210,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/images/story-editorial.jpg"
-                  alt="Wooden spice box with True Taste spices"
+                  alt="Heritage brass and carved wood spice box with freshly ground spices and True Taste spice jar on natural linen"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

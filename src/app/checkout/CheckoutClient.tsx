@@ -16,9 +16,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ShoppingBag, ArrowRight, AlertCircle, Leaf, Mail } from 'lucide-react';
+import { ShoppingBag, ArrowRight, AlertCircle, Leaf } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
 import AnimatedSection from '@/components/AnimatedSection';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { buildCartWhatsAppMessage, redirectToWhatsApp } from '@/lib/whatsapp';
 
 interface CheckoutForm {
   fullName: string;
@@ -73,47 +75,71 @@ export default function CheckoutClient() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleDirectWhatsAppOrder() {
+    const orderId = `TT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    const message = buildCartWhatsAppMessage({
+      items,
+      subtotal: displaySubtotal,
+      shipping: displayShipping,
+      total: displayTotal,
+      orderId,
+    });
+    redirectToWhatsApp(message);
+    clearCart();
+    router.push(`/order-confirmation?orderId=${orderId}&channel=whatsapp`);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (isProcessing) return;
     setError(null);
     setIsProcessing(true);
 
-    try {
-      const res = await fetch('/api/checkout/send-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customerName: form.fullName,
-          customerEmail: form.email,
-          phone: form.phone,
-          addressLine1: form.addressLine1,
-          addressLine2: form.addressLine2 || undefined,
-          city: form.city,
-          state: form.state,
-          pincode: form.pincode,
-          items: items.map((item) => ({
-            productId: item.productId,
-            size: item.size,
-            quantity: item.quantity,
-          })),
-        }),
-      });
+    const orderId = `TT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    const message = buildCartWhatsAppMessage({
+      items,
+      subtotal: displaySubtotal,
+      shipping: displayShipping,
+      total: displayTotal,
+      orderId,
+      customer: {
+        fullName: form.fullName,
+        phone: form.phone,
+        email: form.email || undefined,
+        addressLine1: form.addressLine1,
+        addressLine2: form.addressLine2 || undefined,
+        city: form.city,
+        state: form.state,
+        pincode: form.pincode,
+      },
+    });
 
-      const data = await res.json();
+    // Optional background log/email if configured
+    fetch('/api/checkout/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        customerName: form.fullName,
+        customerEmail: form.email || 'customer@truetaste.in',
+        phone: form.phone,
+        addressLine1: form.addressLine1,
+        addressLine2: form.addressLine2 || undefined,
+        city: form.city,
+        state: form.state,
+        pincode: form.pincode,
+        items: items.map((item) => ({
+          productId: item.productId,
+          size: item.size,
+          quantity: item.quantity,
+        })),
+      }),
+    }).catch(() => {
+      // Background logging error can be ignored as order is sent via WhatsApp
+    });
 
-      if (!res.ok || !data.success) {
-        setError(data.error ?? 'Could not place order. Please try again.');
-        setIsProcessing(false);
-        return;
-      }
-
-      clearCart();
-      router.push(`/order-confirmation?orderId=${data.orderId}`);
-    } catch {
-      setError('Network error. Please check your connection and try again.');
-      setIsProcessing(false);
-    }
+    redirectToWhatsApp(message);
+    clearCart();
+    router.push(`/order-confirmation?orderId=${orderId}&channel=whatsapp`);
   }
 
   return (
@@ -125,10 +151,10 @@ export default function CheckoutClient() {
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <AnimatedSection className="mb-8">
-          <div className="eyebrow mb-3">Checkout</div>
-          <h1 className="font-playfair font-bold text-[#2E5E2E] text-4xl md:text-5xl">Place Your Order</h1>
+          <div className="eyebrow mb-3">WhatsApp Order</div>
+          <h1 className="font-playfair font-bold text-[#2E5E2E] text-4xl md:text-5xl">Place Order via WhatsApp</h1>
           <p className="font-lato text-[#7a6b4e] mt-3 text-sm max-w-lg">
-            Fill in your details and we&apos;ll send you a confirmation email. Our team will contact you to arrange delivery and payment.
+            Enter your delivery details below. When you tap &ldquo;Place Order on WhatsApp&rdquo;, WhatsApp will open with your full order and address pre-filled, so our team can confirm and dispatch immediately.
           </p>
         </AnimatedSection>
 
@@ -193,21 +219,20 @@ export default function CheckoutClient() {
 
                   <div>
                     <label htmlFor="email" className="block font-lato text-[0.7rem] font-bold uppercase tracking-wider text-[#2E5E2E] mb-2">
-                      Email Address *
+                      Email Address <span className="font-normal normal-case text-[#7a6b4e]">(optional)</span>
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
-                      required
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="your@email.com"
+                      placeholder="your@email.com (optional)"
                       className="form-field"
                       disabled={isProcessing}
                     />
                     <p className="font-lato text-[0.65rem] text-[#7a6b4e] mt-1.5">
-                      Order confirmation will be sent to this address.
+                      Optional — order will primarily be confirmed on WhatsApp.
                     </p>
                   </div>
                 </div>
@@ -355,10 +380,10 @@ export default function CheckoutClient() {
 
                 {/* How it works notice */}
                 <div className="rounded-xl p-3.5 mb-5 flex items-start gap-2.5"
-                  style={{ background: 'rgba(122,163,62,0.08)', border: '1px solid rgba(122,163,62,0.2)' }}>
-                  <Mail className="w-4 h-4 text-[#7AA33E] flex-shrink-0 mt-0.5" />
-                  <p className="font-lato text-[0.68rem] text-[#2E5E2E] leading-relaxed">
-                    We&apos;ll email you a confirmation and contact you to arrange payment and delivery.
+                  style={{ background: 'rgba(37, 211, 102, 0.08)', border: '1px solid rgba(37, 211, 102, 0.25)' }}>
+                  <WhatsAppIcon className="w-5 h-5 fill-[#25D366] flex-shrink-0 mt-0.5" />
+                  <p className="font-lato text-[0.68rem] text-[#1b5e20] leading-relaxed">
+                    Tapping the button below will open WhatsApp with your items and delivery address pre-filled. Just hit send in WhatsApp to place your order!
                   </p>
                 </div>
 
@@ -367,24 +392,30 @@ export default function CheckoutClient() {
                   id="place-order-btn"
                   type="submit"
                   disabled={isProcessing}
-                  className="btn-primary w-full justify-center"
-                  style={{ opacity: isProcessing ? 0.7 : 1, cursor: isProcessing ? 'not-allowed' : 'pointer' }}
+                  className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-lato font-bold text-sm sm:text-base text-white shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                    boxShadow: '0 6px 20px rgba(37, 211, 102, 0.4)',
+                    opacity: isProcessing ? 0.7 : 1,
+                    cursor: isProcessing ? 'not-allowed' : 'pointer',
+                  }}
                 >
-                  {isProcessing ? (
-                    <>
-                      <span className="w-4 h-4 border-2 border-[#F2E6C9]/40 border-t-[#F2E6C9] rounded-full animate-spin" />
-                      Sending Order…
-                    </>
-                  ) : (
-                    <>
-                      <Leaf className="w-4 h-4" />
-                      Place Order
-                    </>
-                  )}
+                  <WhatsAppIcon className="w-5 h-5 fill-white flex-shrink-0" />
+                  <span>Place Order on WhatsApp • ₹{displayTotal}</span>
+                </button>
+
+                {/* Direct fast-order button without filling address */}
+                <button
+                  type="button"
+                  onClick={handleDirectWhatsAppOrder}
+                  className="w-full mt-3 py-2.5 px-4 rounded-xl font-lato text-xs font-bold border border-[#25D366]/40 text-[#128C7E] hover:bg-[#25D366]/10 transition-colors flex items-center justify-center gap-2"
+                >
+                  <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
+                  <span>Skip Address & Order on WhatsApp Directly</span>
                 </button>
 
                 <p className="font-lato text-[0.6rem] text-[#7a6b4e] text-center mt-3">
-                  No payment required now · We&apos;ll contact you to confirm
+                  No online payment needed now · Pay via UPI / COD on WhatsApp
                 </p>
               </div>
             </AnimatedSection>

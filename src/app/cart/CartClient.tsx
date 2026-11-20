@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Leaf } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { buildCartWhatsAppMessage, redirectToWhatsApp } from '@/lib/whatsapp';
 
 import AnimatedSection from '@/components/AnimatedSection';
 
@@ -15,10 +17,19 @@ export default function CartClient() {
   const clearCart = useCartStore((s) => s.clearCart);
   const subtotal = useCartStore((s) => s.subtotal());
 
-
   const isEmpty = items.length === 0;
   const shipping = subtotal >= 499 ? 0 : subtotal > 0 ? 60 : 0;
   const total = subtotal + shipping;
+
+  function handleWhatsAppOrder() {
+    const message = buildCartWhatsAppMessage({
+      items,
+      subtotal,
+      shipping,
+      total,
+    });
+    redirectToWhatsApp(message);
+  }
 
   return (
     <div className="min-h-screen bg-[#FFF8EF] px-4 py-28">
@@ -207,13 +218,27 @@ export default function CartClient() {
                 </p>
 
                 {/* Checkout CTA */}
+                <button
+                  type="button"
+                  id="cart-page-whatsapp-btn"
+                  onClick={handleWhatsAppOrder}
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-lato font-bold text-sm text-white shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mb-2.5"
+                  style={{
+                    background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                    boxShadow: '0 4px 18px rgba(37, 211, 102, 0.35)',
+                  }}
+                >
+                  <WhatsAppIcon className="w-5 h-5 fill-white flex-shrink-0" />
+                  <span>Order via WhatsApp • ₹{total}</span>
+                </button>
+
                 <Link
                   id="proceed-to-checkout-btn"
                   href="/checkout"
-                  className="btn-primary w-full justify-center mb-3"
+                  className="btn-outline w-full justify-center mb-3 text-xs font-bold border-[#2E5E2E]/25 text-[#2E5E2E] hover:bg-[#2E5E2E]/5"
                 >
-                  Proceed to Checkout
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Add Delivery Address First</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
                 <Link href="/products" className="btn-outline w-full justify-center">

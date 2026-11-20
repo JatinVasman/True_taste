@@ -10,12 +10,19 @@
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight, Leaf, Mail } from 'lucide-react';
+import { CheckCircle, ArrowRight, Leaf } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { DEFAULT_WHATSAPP_PHONE, getWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function OrderConfirmationClient() {
   const params = useSearchParams();
   const orderId = params.get('orderId');
+
+  const whatsappUrl = getWhatsAppUrl(
+    `Hello True Taste! 👋 Checking on my order reference *${orderId || ''}*.`,
+    DEFAULT_WHATSAPP_PHONE
+  );
 
   if (!orderId) {
     return (
@@ -48,10 +55,10 @@ export default function OrderConfirmationClient() {
 
           <div className="eyebrow justify-center mb-4">Order Received</div>
           <h1 className="font-playfair font-bold text-[#2E5E2E] text-4xl mb-4">
-            Thank You!
+            Order Sent to WhatsApp!
           </h1>
           <p className="font-lato text-[#7a6b4e] text-base leading-relaxed mb-6">
-            Your order has been placed successfully. We&rsquo;re reviewing it and will contact you shortly to arrange delivery and payment.
+            Your order details have been prepared for WhatsApp. If WhatsApp didn&rsquo;t open automatically, tap the button below to send your order.
           </p>
 
           {/* Order ID */}
@@ -65,22 +72,32 @@ export default function OrderConfirmationClient() {
             <p className="font-playfair font-bold text-[#2E5E2E] text-xl">{orderId}</p>
           </div>
 
-          {/* Email notice */}
+          {/* WhatsApp notice & re-open button */}
           <div
-            className="bg-[#FFFDF8] rounded-2xl p-5 mb-8 flex items-start gap-3 text-left"
-            style={{ border: '1px solid rgba(122,163,62,0.18)' }}
+            className="bg-[#FFFDF8] rounded-2xl p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-left"
+            style={{ border: '1px solid rgba(37, 211, 102, 0.3)', background: 'rgba(37, 211, 102, 0.04)' }}
           >
-            <Mail className="w-5 h-5 text-[#7AA33E] flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-lato text-sm font-bold text-[#2E5E2E] mb-1">Confirmation Email Sent</p>
-              <p className="font-lato text-xs text-[#7a6b4e] leading-relaxed">
-                An order summary has been sent to your email address. Our team will reach out to confirm and arrange delivery.
-                For support, contact us at{' '}
-                <a href="mailto:delhiwally@gmial.com" className="text-[#7AA33E] hover:underline">
-                  delhiwally@gmial.com
-                </a>
-              </p>
+            <div className="flex items-start gap-3">
+              <WhatsAppIcon className="w-6 h-6 fill-[#25D366] flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-lato text-sm font-bold text-[#1b5e20] mb-0.5">Confirm with us on WhatsApp</p>
+                <p className="font-lato text-xs text-[#7a6b4e] leading-relaxed">
+                  Our team confirms your order and coordinates delivery directly on WhatsApp.
+                </p>
+              </div>
             </div>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 inline-flex items-center gap-2 py-2.5 px-4 rounded-xl font-lato font-bold text-xs text-white shadow-md hover:scale-105 transition-all"
+              style={{
+                background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+              }}
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+              <span>Open WhatsApp Chat</span>
+            </a>
           </div>
 
           {/* Actions */}

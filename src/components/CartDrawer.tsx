@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, Truck } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
 import { useCartDrawer } from '@/lib/cartDrawer';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { buildCartWhatsAppMessage, redirectToWhatsApp } from '@/lib/whatsapp';
 
 const FREE_SHIPPING_THRESHOLD = 499;
 
@@ -20,6 +22,18 @@ export default function CartDrawer() {
   const totalCount = useCartStore((s) => s.totalCount());
 
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  function handleWhatsAppOrder() {
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 60;
+    const total = subtotal + shipping;
+    const message = buildCartWhatsAppMessage({
+      items,
+      subtotal,
+      shipping,
+      total,
+    });
+    redirectToWhatsApp(message);
+  }
 
   // Close on Escape key and lock body scroll
   useEffect(() => {
@@ -243,14 +257,28 @@ export default function CartDrawer() {
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2.5">
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppOrder}
+                    id="cart-drawer-whatsapp-btn"
+                    className="w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-lato font-bold text-sm text-white shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                      boxShadow: '0 4px 18px rgba(37, 211, 102, 0.35)',
+                    }}
+                  >
+                    <WhatsAppIcon className="w-5 h-5 fill-white flex-shrink-0" />
+                    <span>Order via WhatsApp ({totalCount} items)</span>
+                  </button>
+
                   <Link
                     href="/checkout"
                     onClick={closeCart}
-                    className="btn-primary w-full justify-center py-3.5 text-sm"
+                    className="btn-outline w-full justify-center py-2.5 text-xs font-bold border-[#2E5E2E]/25 text-[#2E5E2E] hover:bg-[#2E5E2E]/5"
                   >
-                    <span>Proceed to Checkout</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Add Delivery Address First</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
 
                   <div className="flex items-center justify-between pt-1">

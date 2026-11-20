@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { Product } from '@/lib/products';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { buildProductWhatsAppMessage, redirectToWhatsApp } from '@/lib/whatsapp';
 
 interface ProductCardProps {
   product: Product;
@@ -20,6 +22,25 @@ export default function ProductCard({
 }: ProductCardProps) {
   const isFeatured = variant === 'featured' || size === 'lg';
   const isCompact = variant === 'compact' || size === 'sm';
+
+  function handleQuickOrder(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    const defaultSize = '100g';
+    const unitPrice = product.pricing ? product.pricing[defaultSize] : 0;
+    if (!product.pricing) {
+      redirectToWhatsApp(`Hello True Taste! 👋 I would like to enquire about ordering *${product.name}*.`);
+      return;
+    }
+    const message = buildProductWhatsAppMessage({
+      name: product.name,
+      size: defaultSize,
+      quantity: 1,
+      unitPrice,
+      slug: product.slug,
+    });
+    redirectToWhatsApp(message);
+  }
 
   return (
     <Link
@@ -134,15 +155,30 @@ export default function ProductCard({
             ))}
           </div>
 
-          <div
-            className="flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
-            style={{ color: '#7AA33E', fontSize: '0.7rem', fontFamily: 'Lato, sans-serif', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}
-          >
-            <span>View</span>
-            <ArrowRight
-              className="transition-transform duration-300 group-hover:translate-x-1"
-              style={{ width: '0.85rem', height: '0.85rem' }}
-            />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleQuickOrder}
+              title={`Order ${product.name} on WhatsApp`}
+              aria-label={`Order ${product.name} on WhatsApp`}
+              className="w-7 h-7 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 shadow-sm"
+              style={{
+                background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+              }}
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
+            </button>
+
+            <div
+              className="flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
+              style={{ color: '#7AA33E', fontSize: '0.7rem', fontFamily: 'Lato, sans-serif', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}
+            >
+              <span>View</span>
+              <ArrowRight
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                style={{ width: '0.85rem', height: '0.85rem' }}
+              />
+            </div>
           </div>
         </div>
       </div>
